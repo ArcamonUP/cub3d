@@ -6,7 +6,7 @@
 /*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:16:11 by kbaridon          #+#    #+#             */
-/*   Updated: 2025/04/24 14:29:12 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/04/24 14:48:59 by kbaridon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,5 +126,5 @@ t_data	parsing(int ac, char **av)
 	if (fd == -1)
 		return (error("Error\nCannot open file."), data);
 	data = init_data(data, fd);
-	return (parse_map(data));
+	return (parse_map(data, -1, 0));
 }

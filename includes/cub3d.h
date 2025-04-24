@@ -6,7 +6,7 @@
 /*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:09:59 by kbaridon          #+#    #+#             */
-/*   Updated: 2025/04/24 14:12:00 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/04/24 14:49:07 by kbaridon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ int		error(char *message);
 void	free_tab(char **tab);
 
 //map.c
-t_data	parse_map(t_data data);
+t_data	parse_map(t_data data, int i, int spawn);
 
 #endif
