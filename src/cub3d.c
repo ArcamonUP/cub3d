@@ -6,7 +6,7 @@
 /*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:08:52 by kbaridon          #+#    #+#             */
-/*   Updated: 2025/04/24 14:14:31 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/04/24 14:36:49 by kbaridon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	print_data(t_data data)
 	}
 }
 
+//Next: Do the parsing of the map
 int	main(int ac, char **av)
 {
 	t_data	data;
