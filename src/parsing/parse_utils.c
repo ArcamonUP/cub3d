@@ -1,0 +1,71 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/24 12:59:12 by kbaridon          #+#    #+#             */
+/*   Updated: 2025/04/24 14:11:35 by kbaridon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+#include "stdlib.h"
+#include "libft.h"
+
+int	is_empty(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	if (line[i] && line[i] != '\n')
+		return (0);
+	return (1);
+}
+
+int	ft_strdupcheck(char *line, char **str)
+{
+	int	i;
+	int	y;
+
+	i = 0;
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	if (!line[i])
+		return (1);
+	*str = ft_calloc(sizeof(char), ft_strlen(line + i) + 1);
+	if (!*str)
+		return (error("Error.\nMalloc failed (invalid format in file)."), 1);
+	y = 0;
+	while (line[i] && line[i] != '\n')
+		(*str)[y++] = line[i++];
+	(*str)[y] = '\0';
+	return (0);
+}
+
+t_data	set_null(void)
+{
+	t_data	data;
+
+	data.ceiling_color = NULL;
+	data.floor_color = NULL;
+	data.map = NULL;
+	data.no_path = NULL;
+	data.so_path = NULL;
+	data.we_path = NULL;
+	data.ea_path = NULL;
+	return (data);
+}
+
+int	ft_tablen(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+		i++;
+	return (i);
+}
