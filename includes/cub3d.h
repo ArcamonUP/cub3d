@@ -6,7 +6,7 @@
 /*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:09:59 by kbaridon          #+#    #+#             */
-/*   Updated: 2025/04/24 14:12:00 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/04/28 13:20:07 by kbaridon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct data
 	char	*ceiling_color;
 	char	*floor_color;
 	char	**map;
+	int		map_is_build;
 }	t_data;
 
 //parsing.c
@@ -30,7 +31,7 @@ t_data	parsing(int ac, char **av);
 //parse_utils.c
 t_data	set_null(void);
 int		is_empty(char *line);
-int		ft_strdupcheck(char *line, char **str);
+int		ft_dupcheck(char *line, char **str, int *map);
 int		ft_tablen(char **tab);
 
 //errors.c
@@ -39,6 +40,6 @@ int		error(char *message);
 void	free_tab(char **tab);
 
 //map.c
-t_data	parse_map(t_data data);
+t_data	parse_map(t_data data, int i, int spawn);
 
 #endif

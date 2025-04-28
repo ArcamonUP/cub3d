@@ -6,7 +6,7 @@
 /*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:16:11 by kbaridon          #+#    #+#             */
-/*   Updated: 2025/04/24 14:29:12 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/04/28 13:32:31 by kbaridon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,14 @@ char	**get_cpy(char **map, char *line)
 	return (temp);
 }
 
-int	update_map(char *line, char ***map)
+int	update_map(char *line, char ***map, int *is_build)
 {
 	char	**temp;
 	char	*clean_line;
 
+	if (*is_build == 2)
+		return (1);
+	*is_build = 1;
 	if (ft_strchr(line, '\n'))
 		clean_line = ft_substr(line, 0, ft_strlen(line) - 1);
 	else
@@ -75,19 +78,21 @@ int	dispatch_init(t_data *data, char *line)
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
 	if (ft_strncmp(line + i, "NO", 2) == 0)
-		error = ft_strdupcheck(line + i + 2, &data->no_path);
+		error = ft_dupcheck(line + i + 2, &data->no_path, &data->map_is_build);
 	else if (ft_strncmp(line + i, "EA", 2) == 0)
-		error = ft_strdupcheck(line + i + 2, &data->ea_path);
+		error = ft_dupcheck(line + i + 2, &data->ea_path, &data->map_is_build);
 	else if (ft_strncmp(line + i, "WE", 2) == 0)
-		error = ft_strdupcheck(line + i + 2, &data->we_path);
+		error = ft_dupcheck(line + i + 2, &data->we_path, &data->map_is_build);
 	else if (ft_strncmp(line + i, "SO", 2) == 0)
-		error = ft_strdupcheck(line + i + 2, &data->so_path);
+		error = ft_dupcheck(line + i + 2, &data->so_path, &data->map_is_build);
 	else if (ft_strncmp(line + i, "F", 1) == 0)
-		error = ft_strdupcheck(line + i + 1, &data->floor_color);
+		error = ft_dupcheck(line + i + 1, &data->floor_color, \
+			&data->map_is_build);
 	else if (ft_strncmp(line + i, "C", 1) == 0)
-		error = ft_strdupcheck(line + i + 1, &data->ceiling_color);
+		error = ft_dupcheck(line + i + 1, &data->ceiling_color, \
+			&data->map_is_build);
 	else
-		error = update_map(line, &data->map);
+		error = update_map(line, &data->map, &data->map_is_build);
 	return (error);
 }
 
@@ -126,5 +131,5 @@ t_data	parsing(int ac, char **av)
 	if (fd == -1)
 		return (error("Error\nCannot open file."), data);
 	data = init_data(data, fd);
-	return (parse_map(data));
+	return (parse_map(data, -1, 0));
 }
