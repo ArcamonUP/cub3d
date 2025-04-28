@@ -6,7 +6,7 @@
 /*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:59:12 by kbaridon          #+#    #+#             */
-/*   Updated: 2025/04/24 14:11:35 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/04/28 13:17:51 by kbaridon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ int	is_empty(char *line)
 	return (1);
 }
 
-int	ft_strdupcheck(char *line, char **str)
+int	ft_dupcheck(char *line, char **str, int *map)
 {
 	int	i;
 	int	y;
 
+	if (*map == 1)
+		*map = 2;
 	i = 0;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
@@ -57,6 +59,7 @@ t_data	set_null(void)
 	data.so_path = NULL;
 	data.we_path = NULL;
 	data.ea_path = NULL;
+	data.map_is_build = 0;
 	return (data);
 }
 
