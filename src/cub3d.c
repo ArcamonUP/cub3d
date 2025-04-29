@@ -6,37 +6,57 @@
 /*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:08:52 by kbaridon          #+#    #+#             */
-/*   Updated: 2025/04/24 14:36:49 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/04/29 13:10:08 by kbaridon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "libft.h"
 
-void	print_data(t_data data)
+void	print_vars(t_vars var)
 {
-	ft_printf("NO: %s\n", data.no_path);
-	ft_printf("SO: %s\n", data.so_path);
-	ft_printf("WE: %s\n", data.we_path);
-	ft_printf("EA: %s\n", data.ea_path);
-	ft_printf("C: %s\n", data.ceiling_color);
-	ft_printf("F: %s\n", data.floor_color);
-	ft_printf("Map:\n");
-	for (int i = 0; data.map[i]; i++)
-	{
-		ft_printf("%s\n", data.map[i]);
-	}
+	if (!var.no.error)
+		ft_printf("NO: yes\n");
+	else
+		ft_printf("NO: no\n");
+	if (!var.so.error)
+		ft_printf("SO: yes\n");
+	else
+		ft_printf("SO: no\n");
+	if (!var.we.error)
+		ft_printf("WE: yes\n");
+	else
+		ft_printf("WE: no\n");
+	if (!var.ea.error)
+		ft_printf("EA: yes\n");
+	else
+		ft_printf("EA: no\n");
+	if (var.ceiling_color)
+		ft_printf("C: %x\n", var.ceiling_color);
+	else
+		ft_printf("C: no\n");
+	if (var.floor_color)
+		ft_printf("F: %x\n", var.floor_color);
+	else
+		ft_printf("F: no\n");
+	if (var.map)
+		ft_printf("Map: yes\n");
+	else
+		ft_printf("Map: no\n");
 }
 
-//Next: Do the parsing of the map
 int	main(int ac, char **av)
 {
 	t_data	data;
+	t_vars	vars;
 
 	data = parsing(ac, av);
 	if (!data.map)
 		return (1);
-	print_data(data);
-	data = destroy_data(data);
+	vars = init(&data);
+	if (vars.error)
+		end(vars);
+	print_vars(vars);
+	event_listener(vars);
 	return (0);
 }
