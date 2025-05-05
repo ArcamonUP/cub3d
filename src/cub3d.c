@@ -6,12 +6,24 @@
 /*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:08:52 by kbaridon          #+#    #+#             */
-/*   Updated: 2025/04/29 13:10:08 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/05/05 13:28:44 by kbaridon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "libft.h"
+
+void	print_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		ft_printf("%s\n", map[i]);
+		i++;
+	}
+}
 
 void	print_vars(t_vars var)
 {
@@ -43,6 +55,7 @@ void	print_vars(t_vars var)
 		ft_printf("Map: yes\n");
 	else
 		ft_printf("Map: no\n");
+	print_map(var.map);
 }
 
 int	main(int ac, char **av)
