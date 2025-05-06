@@ -6,7 +6,7 @@
 /*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:09:59 by kbaridon          #+#    #+#             */
-/*   Updated: 2025/05/05 12:27:45 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/05/06 13:55:08 by kbaridon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ typedef struct s_player
 {
 	char	direction;
 	t_pos	pos;
-	int		fov;
 }	t_player;
 
 typedef struct s_vars
