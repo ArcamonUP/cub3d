@@ -6,14 +6,14 @@
 /*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 11:24:33 by kbaridon          #+#    #+#             */
-/*   Updated: 2025/04/29 12:30:58 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/05/05 13:33:44 by kbaridon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "libft.h"
 
-char	**cp_tab(char **tab)
+char	**cp_tab_no_player(char **tab, t_pos pos)
 {
 	char	**result;
 	int		i;
@@ -30,6 +30,8 @@ char	**cp_tab(char **tab)
 		result[i] = ft_strdup(tab[i]);
 		if (!result)
 			return (free_tab(result), NULL);
+		if (i == pos.x)
+			result[i][pos.y] = '0';
 		i++;
 	}
 	return (result);

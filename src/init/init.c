@@ -6,7 +6,7 @@
 /*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:30:04 by kbaridon          #+#    #+#             */
-/*   Updated: 2025/04/29 12:19:05 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/05/05 13:33:39 by kbaridon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,33 @@ int	get_color(char *rgb_str)
 	return ((r << 16) | (g << 8) | b);
 }
 
+t_player	init_player(char **map)
+{
+	t_player	player;
+	int			x;
+	int			y;
+
+	x = 0;
+	player.pos.x = -1;
+	while (map[x] && player.pos.x == -1)
+	{
+		y = 0;
+		while (map[x][y])
+		{
+			if (map[x][y] != '0' && map[x][y] != '1' && map[x][y] != ' ')
+			{
+				player.pos.x = x;
+				player.pos.y = y;
+				player.direction = map[x][y];
+				break ;
+			}
+			y++;
+		}
+		x++;
+	}
+	return (player);
+}
+
 t_vars	init(t_data *data)
 {
 	t_vars	var;
@@ -78,7 +105,8 @@ t_vars	init(t_data *data)
 	var.floor_color = get_color(data->floor_color);
 	if (var.ceiling_color == -1 || var.floor_color == -1)
 		var.error = 1;
-	var.map = cp_tab(data->map);
+	var.player = init_player(data->map);
+	var.map = cp_tab_no_player(data->map, var.player.pos);
 	if (!var.map)
 		var.error = 1;
 	*data = destroy_data(*data);

@@ -6,7 +6,7 @@
 /*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:09:59 by kbaridon          #+#    #+#             */
-/*   Updated: 2025/04/29 13:12:16 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/05/06 13:55:08 by kbaridon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define CUB3D_H
 
 # define KEY_ESC 65307
+# define SOUTH 1
+# define NORTH 2
+# define EAST 3
+# define WEST 4
 
 typedef struct data
 {
@@ -39,6 +43,18 @@ typedef struct s_img
 	int		error;
 }	t_img;
 
+typedef struct s_pos
+{
+	int	x;
+	int	y;
+}	t_pos;
+
+typedef struct s_player
+{
+	char	direction;
+	t_pos	pos;
+}	t_player;
+
 typedef struct s_vars
 {
 	void			*mlx;
@@ -47,6 +63,7 @@ typedef struct s_vars
 	t_img			so;
 	t_img			we;
 	t_img			ea;
+	t_player		player;
 	int				ceiling_color;
 	int				floor_color;
 	char			**map;
@@ -71,7 +88,7 @@ void	free_tab(char **tab);
 t_data	parse_map(t_data data, int i, int spawn);
 
 //init_utils.c
-char	**cp_tab(char **tab);
+char	**cp_tab_no_player(char **tab, t_pos pos);
 int		get_value(char *str, int *i);
 
 //init.c
