@@ -6,7 +6,7 @@
 #    By: achu <achu@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/24 12:04:55 by kbaridon          #+#    #+#              #
-#    Updated: 2025/05/14 00:56:22 by achu             ###   ########.fr        #
+#    Updated: 2025/05/14 01:11:20 by achu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,8 @@ SRC =	cub3d.c \
 		init/init.c init/init_utils.c init/end.c  \
 		engine/input.c \
 		graphic/image.c \
+		graphic/debug.c \
+		graphic/pixel.c \
 		graphic/window.c \
 		mini_map/mini_map.c \
 		game/event_listener.c
