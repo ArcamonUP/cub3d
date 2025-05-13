@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 11:24:33 by kbaridon          #+#    #+#             */
-/*   Updated: 2025/05/05 13:33:44 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/05/14 00:40:04 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "game.h"
 #include "libft.h"
 
-char	**cp_tab_no_player(char **tab, t_pos pos)
+char	**cp_tab_no_player(char **tab, t_vec2 pos)
 {
 	char	**result;
 	int		i;
@@ -31,7 +31,7 @@ char	**cp_tab_no_player(char **tab, t_pos pos)
 		if (!result)
 			return (free_tab(result), NULL);
 		if (i == pos.x)
-			result[i][pos.y] = '0';
+			result[i][(int)pos.y] = '0';
 		i++;
 	}
 	return (result);

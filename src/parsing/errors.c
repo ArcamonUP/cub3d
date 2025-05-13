@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:16:57 by kbaridon          #+#    #+#             */
-/*   Updated: 2025/04/24 13:37:51 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/05/14 00:34:42 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "game.h"
 #include "libft.h"
 
 void	free_tab(char **tab)

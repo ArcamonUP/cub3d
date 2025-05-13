@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:09:59 by kbaridon          #+#    #+#             */
-/*   Updated: 2025/05/06 13:55:08 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/05/14 00:37:57 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef GAME_H
+# define GAME_H
 
-# define KEY_ESC 65307
-# define SOUTH 1
-# define NORTH 2
-# define EAST 3
-# define WEST 4
+# define SOUTH		1
+# define NORTH		2
+# define EAST		3
+# define WEST		4
+
+# include "engine/image.h"
+# include "player.h"
 
 typedef struct data
 {
@@ -30,30 +32,6 @@ typedef struct data
 	char	**map;
 	int		map_is_build;
 }	t_data;
-
-typedef struct s_img
-{
-	void	*img;
-	char	*addr;
-	int		width;
-	int		heigh;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		error;
-}	t_img;
-
-typedef struct s_pos
-{
-	int	x;
-	int	y;
-}	t_pos;
-
-typedef struct s_player
-{
-	char	direction;
-	t_pos	pos;
-}	t_player;
 
 typedef struct s_vars
 {
@@ -88,7 +66,7 @@ void	free_tab(char **tab);
 t_data	parse_map(t_data data, int i, int spawn);
 
 //init_utils.c
-char	**cp_tab_no_player(char **tab, t_pos pos);
+char	**cp_tab_no_player(char **tab, t_vec2 pos);
 int		get_value(char *str, int *i);
 
 //init.c
