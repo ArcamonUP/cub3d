@@ -3,26 +3,28 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+         #
+#    By: achu <achu@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/24 12:04:55 by kbaridon          #+#    #+#              #
-#    Updated: 2025/04/29 13:08:18 by kbaridon         ###   ########.fr        #
+#    Updated: 2025/05/13 15:10:22 by achu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 GREEN=\033[0;32m
 ORANGE=\033[38;5;214m
+
+NAME = cub3d
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
 OTHERFLAGS = -L $(LIBDIR) -lmlx -lXext -lX11 -lm -lz
+
 SRCDIR = src
-LIBFT = libft
+LIBFT = lib/libft
 LIBDIR = lib/minilibx-linux
 INCLUDES = -I $(LIBDIR)
 INCDIR = includes
-NAME = cub3d
-HEADERS = $(INCDIR)/cub3d.h $(LIBFT)/libft.h
 
+HEADERS = $(INCDIR)/cub3d.h $(LIBFT)/libft.h
 SRC =	cub3d.c \
 		parsing/parsing.c parsing/map.c parsing/parse_utils.c parsing/errors.c \
 		init/init.c init/init_utils.c init/end.c  \

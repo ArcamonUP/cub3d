@@ -10,7 +10,6 @@ cub3d
 *.obj
 
 # Libraries
-lib
 *.a
 
 # Executables
