@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:30:04 by kbaridon          #+#    #+#             */
-/*   Updated: 2025/05/05 13:33:39 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/05/14 00:50:25 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "game.h"
 #include "libft.h"
 #include <mlx.h>
 
@@ -19,14 +19,14 @@ t_img	create_image(void *mlx, char *path)
 	t_img	image;
 
 	image.error = 0;
-	image.img = mlx_xpm_file_to_image(mlx, path, &image.width, &image.heigh);
-	if (!image.img)
+	image.ptr = mlx_xpm_file_to_image(mlx, path, &image.w, &image.h);
+	if (!image.ptr)
 	{
 		image.error = 1;
 		return (image);
 	}
-	image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel, \
-	&image.line_length, &image.endian);
+	image.addr = mlx_get_data_addr(image.ptr, &image.bpp, \
+	&image.llen, &image.endian);
 	if (!image.addr)
 		image.error = 1;
 	return (image);
@@ -36,8 +36,10 @@ void	*create_window(void *mlx)
 {
 	void	*mlx_win;
 
-	mlx_win = mlx_new_window(mlx, 200, 200, "cub3d");
-	//200x200 a changer ici
+	mlx_win = mlx_new_window(mlx,
+		WINDOW_WIDTH,
+		WINDOW_HEIGHT,
+		WINDOW_TITLE);
 	return (mlx_win);
 }
 
@@ -68,16 +70,16 @@ t_player	init_player(char **map)
 	int			y;
 
 	x = 0;
-	player.pos.x = -1;
-	while (map[x] && player.pos.x == -1)
+	player.position.x = -1;
+	while (map[x] && player.position.x == -1)
 	{
 		y = 0;
 		while (map[x][y])
 		{
 			if (map[x][y] != '0' && map[x][y] != '1' && map[x][y] != ' ')
 			{
-				player.pos.x = x;
-				player.pos.y = y;
+				player.position.x = x;
+				player.position.y = y;
 				player.direction = map[x][y];
 				break ;
 			}
@@ -106,7 +108,7 @@ t_vars	init(t_data *data)
 	if (var.ceiling_color == -1 || var.floor_color == -1)
 		var.error = 1;
 	var.player = init_player(data->map);
-	var.map = cp_tab_no_player(data->map, var.player.pos);
+	var.map = cp_tab_no_player(data->map, var.player.position);
 	if (!var.map)
 		var.error = 1;
 	*data = destroy_data(*data);

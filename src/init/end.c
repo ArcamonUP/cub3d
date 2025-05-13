@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   end.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 12:12:21 by kbaridon          #+#    #+#             */
-/*   Updated: 2025/04/29 13:05:51 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/05/14 00:34:59 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "game.h"
 #include "mlx.h"
 #include "libft.h"
 
 void	end(t_vars var)
 {
 	if (!var.ea.error)
-		mlx_destroy_image(var.mlx, var.ea.img);
+		mlx_destroy_image(var.mlx, var.ea.ptr);
 	if (!var.no.error)
-		mlx_destroy_image(var.mlx, var.no.img);
+		mlx_destroy_image(var.mlx, var.no.ptr);
 	if (!var.so.error)
-		mlx_destroy_image(var.mlx, var.so.img);
+		mlx_destroy_image(var.mlx, var.so.ptr);
 	if (!var.we.error)
-		mlx_destroy_image(var.mlx, var.we.img);
+		mlx_destroy_image(var.mlx, var.we.ptr);
 	if (var.map)
 		free_tab(var.map);
 	if (var.win)
