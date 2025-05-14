@@ -32,17 +32,6 @@ t_img	create_image(void *mlx, char *path)
 	return (image);
 }
 
-void	*create_window(void *mlx)
-{
-	void	*mlx_win;
-
-	mlx_win = mlx_new_window(mlx,
-		WINDOW_WIDTH,
-		WINDOW_HEIGHT,
-		WINDOW_TITLE);
-	return (mlx_win);
-}
-
 int	get_color(char *rgb_str)
 {
 	int	r;
@@ -63,54 +52,27 @@ int	get_color(char *rgb_str)
 	return ((r << 16) | (g << 8) | b);
 }
 
-t_player	init_player(char **map)
-{
-	t_player	player;
-	int			x;
-	int			y;
+// t_vars	init(t_data *data)
+// {
+// 	t_vars	var;
 
-	x = 0;
-	player.pos.x = -1;
-	while (map[x] && player.pos.x == -1)
-	{
-		y = 0;
-		while (map[x][y])
-		{
-			if (map[x][y] != '0' && map[x][y] != '1' && map[x][y] != ' ')
-			{
-				player.pos.x = x;
-				player.pos.y = y;
-				player.dir = map[x][y];
-				break ;
-			}
-			y++;
-		}
-		x++;
-	}
-	return (player);
-}
-
-t_vars	init(t_data *data)
-{
-	t_vars	var;
-
-	var.error = 0;
-	var.mlx = mlx_init();
-	var.win = create_window(var.mlx);
-	var.ea = create_image(var.mlx, data->ea_path);
-	var.no = create_image(var.mlx, data->no_path);
-	var.so = create_image(var.mlx, data->so_path);
-	var.we = create_image(var.mlx, data->we_path);
-	if (var.ea.error || var.no.error || var.so.error || var.we.error)
-		var.error = 1;
-	var.ceiling_color = get_color(data->ceiling_color);
-	var.floor_color = get_color(data->floor_color);
-	if (var.ceiling_color == -1 || var.floor_color == -1)
-		var.error = 1;
-	var.player = init_player(data->map);
-	var.map = cp_tab_no_player(data->map, var.player.pos);
-	if (!var.map)
-		var.error = 1;
-	*data = destroy_data(*data);
-	return (var);
-}
+// 	var.error = 0;
+// 	var.mlx = mlx_init();
+// 	var.win = create_window(var.mlx);
+// 	var.ea = create_image(var.mlx, data->ea_path);
+// 	var.no = create_image(var.mlx, data->no_path);
+// 	var.so = create_image(var.mlx, data->so_path);
+// 	var.we = create_image(var.mlx, data->we_path);
+// 	if (var.ea.error || var.no.error || var.so.error || var.we.error)
+// 		var.error = 1;
+// 	var.ceiling_color = get_color(data->ceiling_color);
+// 	var.floor_color = get_color(data->floor_color);
+// 	if (var.ceiling_color == -1 || var.floor_color == -1)
+// 		var.error = 1;
+// 	var.player = init_player(data->map);
+// 	var.map = cp_tab_no_player(data->map, var.player.pos);
+// 	if (!var.map)
+// 		var.error = 1;
+// 	*data = destroy_data(*data);
+// 	return (var);
+// }

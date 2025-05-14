@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   system.h                                           :+:      :+:    :+:   */
+/*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/14 22:42:41 by achu              #+#    #+#             */
-/*   Updated: 2025/05/14 22:48:24 by achu             ###   ########.fr       */
+/*   Created: 2025/05/14 22:50:40 by achu              #+#    #+#             */
+/*   Updated: 2025/05/14 22:55:25 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SYSTEM_H
-# define SYSTEM_H
+#include <stdio.h>
+#include <stdlib.h>
+#include "game.h"
 
-# include "engine/window.h"
-# include "engine/image.h"
-# include "engine/input.h"
-# include "game.h"
-# include "map.h"
-
-typedef struct s_system
+t_game	*init_game(t_display window, t_map *grid)
 {
-	t_display	window;
-	t_img		buffer;
-	t_keybind	*input;
-	t_game		*game;
-	t_map		*grid;
-	double		last;
-	double		delta;
-}	t_system;
+	t_game	*game;
 
-t_system	*init_system(void);
-int32_t		destroy_system(t_system	*sys);
-double		get_frame(void);
+	game = (t_game *)malloc(sizeof(t_game));
+	if (!game)
+		return (NULL);
+	game->player = init_player(*grid);
+	game->is_gameover = false;
+	game->collect = 0;
+	game->timer_start = 0.0f;
+	game->timer_elapsed = 0.0f;
+	return (game);
+}
 
-#endif
+void	destroy_game(t_game *game)
+{
+
+}

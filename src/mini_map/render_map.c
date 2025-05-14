@@ -15,11 +15,4 @@
 void	render_minimap(char **)
 {
 	
-	while ()
-	{
-		while ()
-		{
-			
-		}
-	}
 }

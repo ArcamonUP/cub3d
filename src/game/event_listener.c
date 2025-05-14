@@ -27,17 +27,3 @@ int	end_game(t_vars *var)
 	exit(1);
 	return (1);
 }
-
-int	key_hook(int keycode, t_vars *var)
-{
-	if (keycode == KEY_ESC)
-		return (end_game(var));
-	return (0);
-}
-
-void	event_listener(t_vars var)
-{
-	mlx_key_hook(var.win, key_hook, &var);
-	mlx_hook(var.win, 17, 0, end_game, &var);
-	mlx_loop(var.mlx);
-}

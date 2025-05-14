@@ -30,16 +30,18 @@ HEADERS =	$(INCDIR)/engine/image.h \
 			$(INCDIR)/engine/render.h \
 			$(INCDIR)/engine/vector.h \
 			$(INCDIR)/engine/window.h \
-			$(INCDIR)/common.h \
 			$(INCDIR)/player.h \
+			$(INCDIR)/common.h \
+			$(INCDIR)/system.h \
 			$(INCDIR)/game.h \
 			$(INCDIR)/map.h \
 			$(LIBFT)/libft.h
 
-SRC =	cub3d.c \
+SRC =	main.c \
 		parsing/parsing.c parsing/map.c parsing/parse_utils.c parsing/errors.c \
 		init/init.c init/init_utils.c init/end.c  \
 		engine/input.c \
+		engine/engine.c \
 		graphic/image.c \
 		graphic/debug.c \
 		graphic/pixel.c \

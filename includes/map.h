@@ -30,6 +30,18 @@ typedef enum e_tile
 	DOOR = 'D',
 }	t_tile;
 
+typedef struct s_data
+{
+	char	*no_path;
+	char	*so_path;
+	char	*we_path;
+	char	*ea_path;
+	char	*ceiling_color;
+	char	*floor_color;
+	char	**map;
+	int		map_is_build;
+}	t_data;
+
 typedef struct s_map
 {
 	int			height;
