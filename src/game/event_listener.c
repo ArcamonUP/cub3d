@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_listener.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:03:32 by kbaridon          #+#    #+#             */
-/*   Updated: 2025/05/14 00:39:11 by achu             ###   ########.fr       */
+/*   Updated: 2025/05/14 13:26:20 by kbaridon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ int	key_hook(int keycode, t_vars *var)
 void	event_listener(t_vars var)
 {
 	mlx_key_hook(var.win, key_hook, &var);
-	mlx_hook(var.win, 17, 0, end_game, &var);
+	mlx_hook(var.win, ON_DESTROY, 0, end_game, &var);
 	mlx_loop(var.mlx);
 }
