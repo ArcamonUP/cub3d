@@ -32,24 +32,11 @@ t_img	create_image(void *mlx, char *path)
 	return (image);
 }
 
-int	get_color(char *rgb_str)
+void	get_rgb(unsigned int color, int *r, int *g, int *b)
 {
-	int	r;
-	int	g;
-	int	b;
-	int	i;
-
-	i = 0;
-	r = get_value(rgb_str, &i);
-	if (r == -1)
-		return (-1);
-	g = get_value(rgb_str, &i);
-	if (g == -1)
-		return (-1);
-	b = get_value(rgb_str, &i);
-	if (b == -1)
-		return (-1);
-	return ((r << 16) | (g << 8) | b);
+	*r = (color >> 16) & 0xFF;
+	*g = (color >> 8) & 0xFF;
+	*b = color & 0xFF;
 }
 
 // t_vars	init(t_data *data)

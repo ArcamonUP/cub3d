@@ -10,55 +10,66 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "common.h"
 #include "system.h"
 
-void	print_map(char **map)
-{
-	int	i;
+// void	print_map(char **map)
+// {
+// 	int	i;
 
-	i = 0;
-	while (map[i])
-	{
-		ft_printf("%s\n", map[i]);
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (map[i])
+// 	{
+// 		ft_printf("%s\n", map[i]);
+// 		i++;
+// 	}
+// }
 
-void	print_vars(t_vars var)
+// void	print_vars(t_system var)
+// {
+// 	if (!var.no.error)
+// 		ft_printf("NO: yes\n");
+// 	else
+// 		ft_printf("NO: no\n");
+// 	if (!var.so.error)
+// 		ft_printf("SO: yes\n");
+// 	else
+// 		ft_printf("SO: no\n");
+// 	if (!var.we.error)
+// 		ft_printf("WE: yes\n");
+// 	else
+// 		ft_printf("WE: no\n");
+// 	if (!var.ea.error)
+// 		ft_printf("EA: yes\n");
+// 	else
+// 		ft_printf("EA: no\n");
+// 	if (var.ceiling_color)
+// 		ft_printf("C: %x\n", var.ceiling_color);
+// 	else
+// 		ft_printf("C: no\n");
+// 	if (var.floor_color)
+// 		ft_printf("F: %x\n", var.floor_color);
+// 	else
+// 		ft_printf("F: no\n");
+// 	if (var.map)
+// 		ft_printf("Map: yes\n");
+// 	else
+// 		ft_printf("Map: no\n");
+// 	print_map(var.map);
+// }
+
+static void	delta(t_system *sys)
 {
-	if (!var.no.error)
-		ft_printf("NO: yes\n");
-	else
-		ft_printf("NO: no\n");
-	if (!var.so.error)
-		ft_printf("SO: yes\n");
-	else
-		ft_printf("SO: no\n");
-	if (!var.we.error)
-		ft_printf("WE: yes\n");
-	else
-		ft_printf("WE: no\n");
-	if (!var.ea.error)
-		ft_printf("EA: yes\n");
-	else
-		ft_printf("EA: no\n");
-	if (var.ceiling_color)
-		ft_printf("C: %x\n", var.ceiling_color);
-	else
-		ft_printf("C: no\n");
-	if (var.floor_color)
-		ft_printf("F: %x\n", var.floor_color);
-	else
-		ft_printf("F: no\n");
-	if (var.map)
-		ft_printf("Map: yes\n");
-	else
-		ft_printf("Map: no\n");
-	print_map(var.map);
+	double	curr;
+
+	curr = get_frame();
+	sys->delta = curr - sys->last;
+	sys->last = curr;
 }
 
 static int32_t	update(t_system *sys)
 {
+	delta(sys);
 	//PLAYER
 	//RENDER
 	return (0);

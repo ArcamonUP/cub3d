@@ -30,27 +30,44 @@ typedef enum e_tile
 	DOOR = 'D',
 }	t_tile;
 
-typedef struct s_data
-{
-	char	*no_path;
-	char	*so_path;
-	char	*we_path;
-	char	*ea_path;
-	char	*ceiling_color;
-	char	*floor_color;
-	char	**map;
-	int		map_is_build;
-}	t_data;
-
 typedef struct s_map
 {
+	char		*no_path;
+	char		*so_path;
+	char		*we_path;
+	char		*ea_path;
+	char		*ceiling_color;
+	char		*floor_color;
+	char		**map;
+	int			map_is_build;
+
 	int			height;
 	int			width;
 	char		**grid;
 	bool		**visited;
-
-	t_vec2		player_pos;
-	int32_t		max_player;
 }	t_map;
+
+//parsing.c
+t_map	parsing(int ac, char **av);
+
+//parse_utils.c
+t_map	set_null(void);
+int		is_empty(char *line);
+int		ft_dupcheck(char *line, char **str, int *map);
+int		ft_tablen(char **tab);
+
+//errors.c
+t_map	destroy_data(t_map data);
+int		error(char *message);
+void	free_tab(char **tab);
+
+//map.c
+t_map	parse_map(t_map data, int i, int spawn);
+
+//init_utils.c
+char	**cp_tab_no_player(char **tab, t_vec2 pos);
+int		get_value(char *str, int *i);
+
+void	free_tab(char **tab);
 
 #endif

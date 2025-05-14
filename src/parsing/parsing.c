@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
-#include "libft.h"
 #include <stdlib.h>
 #include <fcntl.h>
+#include "map.h"
+#include "libft.h"
 
 char	**get_cpy(char **map, char *line)
 {
@@ -67,7 +67,7 @@ int	update_map(char *line, char ***map, int *is_build)
 	return (0);
 }
 
-int	dispatch_init(t_data *data, char *line)
+int	dispatch_init(t_map *data, char *line)
 {
 	int	i;
 	int	error;
@@ -96,7 +96,7 @@ int	dispatch_init(t_data *data, char *line)
 	return (error);
 }
 
-t_data	init_data(t_data data, int fd)
+t_map	init_data(t_map data, int fd)
 {
 	char	*line;
 
@@ -115,11 +115,11 @@ t_data	init_data(t_data data, int fd)
 	return (data);
 }
 
-t_data	parsing(int ac, char **av)
+t_map	parsing(int ac, char **av)
 {
 	int		i;
 	int		fd;
-	t_data	data;
+	t_map	data;
 
 	data = set_null();
 	if (ac != 2)

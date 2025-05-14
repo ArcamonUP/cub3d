@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "map.h"
 #include "libft.h"
 
 char	**cp_tab_no_player(char **tab, t_vec2 pos)

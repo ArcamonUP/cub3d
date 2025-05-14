@@ -41,13 +41,12 @@ SRC =	main.c \
 		parsing/parsing.c parsing/map.c parsing/parse_utils.c parsing/errors.c \
 		init/init.c init/init_utils.c init/end.c  \
 		engine/input.c \
-		engine/engine.c \
+		engine/system.c \
 		graphic/image.c \
 		graphic/debug.c \
 		graphic/pixel.c \
 		graphic/window.c \
 		mini_map/mini_map.c \
-		game/event_listener.c
 
 OBJS = $(addprefix $(SRCDIR)/, $(SRC:.c=.o))
 

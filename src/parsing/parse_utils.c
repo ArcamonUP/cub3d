@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
-#include "stdlib.h"
+#include <stdlib.h>
+#include "map.h"
 #include "libft.h"
 
 int	is_empty(char *line)
@@ -48,19 +48,19 @@ int	ft_dupcheck(char *line, char **str, int *map)
 	return (0);
 }
 
-t_data	set_null(void)
+t_map	set_null(void)
 {
-	t_data	data;
+	t_map	grid;
 
-	data.ceiling_color = NULL;
-	data.floor_color = NULL;
-	data.map = NULL;
-	data.no_path = NULL;
-	data.so_path = NULL;
-	data.we_path = NULL;
-	data.ea_path = NULL;
-	data.map_is_build = 0;
-	return (data);
+	grid.ceiling_color = NULL;
+	grid.floor_color = NULL;
+	grid.map = NULL;
+	grid.no_path = NULL;
+	grid.so_path = NULL;
+	grid.we_path = NULL;
+	grid.ea_path = NULL;
+	grid.map_is_build = 0;
+	return (grid);
 }
 
 int	ft_tablen(char **tab)

@@ -14,22 +14,22 @@
 #include <stdlib.h>
 #include "game.h"
 
-t_game	*init_game(t_display window, t_map *grid)
-{
-	t_game	*game;
+// t_game	*init_game(t_display window, t_map *grid)
+// {
+// 	t_game	*game;
 
-	game = (t_game *)malloc(sizeof(t_game));
-	if (!game)
-		return (NULL);
-	game->player = init_player(*grid);
-	game->is_gameover = false;
-	game->collect = 0;
-	game->timer_start = 0.0f;
-	game->timer_elapsed = 0.0f;
-	return (game);
-}
+// 	game = (t_game *)malloc(sizeof(t_game));
+// 	if (!game)
+// 		return (NULL);
+// 	game->player = init_player(*grid);
+// 	game->is_gameover = false;
+// 	game->collect = 0;
+// 	game->timer_start = 0.0f;
+// 	game->timer_elapsed = 0.0f;
+// 	return (game);
+// }
 
-void	destroy_game(t_game *game)
-{
+// void	destroy_game(t_game *game)
+// {
 
-}
+// }
