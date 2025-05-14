@@ -15,6 +15,7 @@
 
 # include "engine/image.h"
 # include "engine/vector.h"
+# include "system.h"
 
 # define WHITE		    0xFFFFFFFF
 # define BLACK		    0x00000000
@@ -24,6 +25,8 @@
 # define YELLOW		    0xFFFF00
 # define CYAN		    0x00FFFF
 # define MAGENTA	    0xFF00FF
+
+void	render(t_system *sys);
 
 void	draw_bg(t_img *game);
 void	draw_square(t_img *image, t_rect rect, unsigned int color);

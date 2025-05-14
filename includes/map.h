@@ -16,8 +16,6 @@
 # include <stdint.h>
 # include <stdbool.h>
 # include "engine/vector.h"
-# include "engine/image.h"
-# include "engine/render.h"
 
 typedef enum e_tile
 {

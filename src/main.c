@@ -10,8 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "engine/render.h"
+#include "engine/input.h"
 #include "common.h"
 #include "system.h"
+#include "game.h"
+#include "map.h"
 
 // void	print_map(char **map)
 // {
@@ -71,7 +75,7 @@ static int32_t	update(t_system *sys)
 {
 	delta(sys);
 	//PLAYER
-	//RENDER
+	render(sys);
 	return (0);
 }
 
@@ -96,6 +100,7 @@ int	main(int ac, char **av)
 	sys = init_system();
 	if (!sys)
 		return (1);
+	sys->grid = &data;
 	//print_vars(vars);
 	return (start(sys));
 }
