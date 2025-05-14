@@ -6,7 +6,7 @@
 /*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:30:04 by kbaridon          #+#    #+#             */
-/*   Updated: 2025/05/14 00:50:25 by achu             ###   ########.fr       */
+/*   Updated: 2025/05/14 15:39:24 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,17 +70,17 @@ t_player	init_player(char **map)
 	int			y;
 
 	x = 0;
-	player.position.x = -1;
-	while (map[x] && player.position.x == -1)
+	player.pos.x = -1;
+	while (map[x] && player.pos.x == -1)
 	{
 		y = 0;
 		while (map[x][y])
 		{
 			if (map[x][y] != '0' && map[x][y] != '1' && map[x][y] != ' ')
 			{
-				player.position.x = x;
-				player.position.y = y;
-				player.direction = map[x][y];
+				player.pos.x = x;
+				player.pos.y = y;
+				player.dir = map[x][y];
 				break ;
 			}
 			y++;
@@ -108,7 +108,7 @@ t_vars	init(t_data *data)
 	if (var.ceiling_color == -1 || var.floor_color == -1)
 		var.error = 1;
 	var.player = init_player(data->map);
-	var.map = cp_tab_no_player(data->map, var.player.position);
+	var.map = cp_tab_no_player(data->map, var.player.pos);
 	if (!var.map)
 		var.error = 1;
 	*data = destroy_data(*data);

@@ -6,7 +6,7 @@
 /*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:08:52 by kbaridon          #+#    #+#             */
-/*   Updated: 2025/05/14 00:33:42 by achu             ###   ########.fr       */
+/*   Updated: 2025/05/14 12:34:12 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,16 @@ void	print_vars(t_vars var)
 	else
 		ft_printf("Map: no\n");
 	print_map(var.map);
+}
+
+static int32_t	update()
+{
+	
+}
+
+static int32_t	start()
+{
+	
 }
 
 int	main(int ac, char **av)

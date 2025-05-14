@@ -6,7 +6,7 @@
 /*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 19:19:46 by achu              #+#    #+#             */
-/*   Updated: 2025/05/14 00:35:48 by achu             ###   ########.fr       */
+/*   Updated: 2025/05/14 14:53:27 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,9 @@ typedef struct s_input
 typedef struct s_player
 {
 	t_input		controller;
-	t_sprite	sprite;
-	t_vec2		start;
-	t_vec2		position;
-	uint32_t	direction;
+	t_vec2		pos;
+	uint32_t	dir;
+	uint32_t	fov;
 }	t_player;
 
 #endif

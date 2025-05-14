@@ -6,7 +6,7 @@
 /*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 01:10:02 by achu              #+#    #+#             */
-/*   Updated: 2025/05/14 01:51:45 by achu             ###   ########.fr       */
+/*   Updated: 2025/05/14 12:31:08 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,5 @@ void	draw_line(t_vec2 start, t_vec2 end)
 	dx = end.x - start.x;
 	dy = end.y - start.y;
 	m = dx / dy;
+	
 }
