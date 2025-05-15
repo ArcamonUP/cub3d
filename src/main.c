@@ -74,13 +74,17 @@ static void	delta(t_system *sys)
 static int32_t	update(t_system *sys)
 {
 	delta(sys);
-	//PLAYER
+	printf("%lf:%lf\n", sys->game->player.dir.x, sys->game->player.dir.y);
+	update_player(&sys->game->player, sys->input, sys->delta);
+	update_input(sys->input);
 	render(sys);
 	return (0);
 }
 
 static int32_t	start(t_system *sys)
 {
+	sys->last = get_frame();
+	sys->game = init_game(sys->window);
 	mlx_loop_hook(sys->window.mlx, update, sys);
 	mlx_hook(sys->window.win, ON_KEYPRESS, 1L<<0, input_press, sys->input);
 	mlx_hook(sys->window.win, ON_KEYRELEASE, 1L<<1, input_release, sys->input);

@@ -17,7 +17,7 @@
 # include <stdint.h>
 # include "window.h"
 
-# define PIXEL_SIZE	16
+# define PIXEL_SIZE	32
 # define IMG_NO		"../assets/no.xpm"
 # define IMG_SO		"../assets/so.xpm"
 # define IMG_WE		"../assets/we.xpm"

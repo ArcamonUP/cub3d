@@ -29,4 +29,6 @@ typedef struct s_game
 	t_player		player;
 }	t_game;
 
+t_game	*init_game(t_display window);
+
 #endif
