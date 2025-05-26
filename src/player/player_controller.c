@@ -6,7 +6,7 @@
 /*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:12:25 by achu              #+#    #+#             */
-/*   Updated: 2025/05/15 15:04:34 by achu             ###   ########.fr       */
+/*   Updated: 2025/05/26 16:09:29 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,15 @@ t_player	init_player(void)
 	
 	player.controller.move = (t_vec2){.x = 0.0f, .y = 0.0f,};
 	player.controller.turn = (t_vec2){.x = 0.0f, .y = 0.0f,};
-	player.vel = (t_vec2){.x = 0.0f, .y = 0.0f,};
+	player.vel = 0;
+	player.stf = 0;
 	player.pos = (t_vec2){
 		.x = 5 * PIXEL_SIZE,
 		.y = 5 * PIXEL_SIZE,
 	};
 	player.dir = (t_vec2){
 		.x = 0,
-		.y = -1,
+		.y = 1,
 	};
 	player.fov = 60;
 	return (player);
@@ -45,9 +46,9 @@ static void	player_input(t_input *controller, t_keybind *keybind)
 	if (keybind[S].hold)
 		controller->move.y += 1;
 	if (keybind[D].hold)
-		controller->move.x += 1;
-	if (keybind[A].hold)
 		controller->move.x -= 1;
+	if (keybind[A].hold)
+		controller->move.x += 1;
 	if (keybind[LEFT].hold)
 		controller->turn.x -= 1;
 	if (keybind[RIGHT].hold)
@@ -58,8 +59,10 @@ static void	player_input(t_input *controller, t_keybind *keybind)
 void	update_player(t_player *player, t_keybind *keybind, double delta)
 {
 	player_input(&player->controller, keybind);
-	player_direction(player, delta);
 	player_turn(player, delta);
-	player->pos.x += player->vel.x * delta;
-	player->pos.y += player->vel.y * delta;
+	player_direction(player, delta);
+	player->pos.x += player->vel * player->dir.x * delta;
+	player->pos.y += player->vel * player->dir.y * delta;
+	player->pos.x += player->stf * -player->dir.y * delta;
+	player->pos.y += player->stf * player->dir.x * delta;
 }

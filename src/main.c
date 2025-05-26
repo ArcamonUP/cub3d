@@ -74,8 +74,8 @@ static void	delta(t_system *sys)
 static int32_t	update(t_system *sys)
 {
 	delta(sys);
-	printf("%lf:%lf\n", sys->game->player.dir.x, sys->game->player.dir.y);
 	update_player(&sys->game->player, sys->input, sys->delta);
+	//raycast
 	update_input(sys->input);
 	render(sys);
 	return (0);

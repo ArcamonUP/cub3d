@@ -15,8 +15,9 @@
 
 // *** Movement ***
 # define ACCEL 1200
-# define TURN 1200
 # define DECEL 600
+# define TURN_SPEED 180
+# define STRAFE_SPEED 80
 # define MAX_SPEED 90
 
 # define TURN_LEFT -0.5
@@ -37,7 +38,8 @@ typedef struct s_player
 {
 	t_input		controller;
 	t_vec2		pos;
-	t_vec2		vel;
+	double		vel;
+	double		stf;
 	t_vec2		dir;
 	uint32_t	fov;
 }	t_player;

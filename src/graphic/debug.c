@@ -87,13 +87,13 @@ void	draw_rect(t_img *image, t_rect rect, unsigned int color)
 	}
 }
 
-// void	draw_line(t_vec2 start, t_vec2 end)
-// {
-// 	float	dx;
-// 	float	dy;
-// 	float	m;
+void	draw_line(t_img *image, t_vec2 start, t_vec2 end)
+{
+	float	dx;
+	float	dy;
+	float	m;
 
-// 	dx = end.x - start.x;
-// 	dy = end.y - start.y;
-// 	m = dx / dy;
-// }
+	dx = end.x - start.x;
+	dy = end.y - start.y;
+	m = dx / dy;
+}
