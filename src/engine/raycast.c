@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
+/*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:38:21 by achu              #+#    #+#             */
-/*   Updated: 2025/05/27 15:48:20 by achu             ###   ########.fr       */
+/*   Updated: 2025/05/27 17:52:02 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,33 @@
 
 static t_vec2	pythagora(t_vec2 dir)
 {
-	t_vec2	delta_distance;
+	t_vec2	distance;
 
-	delta_distance.x = sqrt(1 + (dir.y * dir.y) / (dir.x * dir.x));
-	delta_distance.y = sqrt(1 + (dir.x * dir.x) / (dir.y * dir.y));
-	return (delta_distance);
+	distance.x = sqrt(1 + (dir.y * dir.y) / (dir.x * dir.x));
+	distance.y = sqrt(1 + (dir.x * dir.x) / (dir.y * dir.y));
+	return (distance);
 }
 
 void	update_raycasting(t_system *sys)
 {
 	t_player	player;
 	t_vec2		delta_dist;
-
 	t_vec2		step;
-	int	i = 0;
 
+	t_vec2		raydir;
+	double		camera;
+	int			side = 0;
+
+	int			i;
+	i = 0;
 	player = sys->game->player;
-	while (i < 120)
+	while (i < WINDOW_WIDTH)
 	{
-		double	cam = 2.0f * i / (double)120.0f - 1.0f;
-		t_vec2		raydir;
-		raydir.x = player.dir.x + (-player.dir.y) * 0.66f * cam;
-		raydir.y = player.dir.y + player.dir.x * 0.66f * cam;
+		camera = 2.0f * i / (double)WINDOW_WIDTH - 1.0f;
+		raydir.x = player.dir.x + (-player.dir.y) * 0.66f * camera;
+		raydir.y = player.dir.y + player.dir.x * 0.66f * camera;
+
 		delta_dist = pythagora(raydir);
-		
 		t_vec2		grid;
 		t_vec2		side_dist;
 		
@@ -79,22 +82,32 @@ void	update_raycasting(t_system *sys)
 				grid.x += step.x;
 				side_dist.x += delta_dist.x;
 				rayDist = side_dist.x;
+				side = 0;
 			}
 			else
 			{
 				grid.y += step.y;
 				side_dist.y += delta_dist.y;
 				rayDist = side_dist.y;
+				side = 1;
 			}
 			if (sys->grid->map[(int)grid.y][(int)grid.x] == '1')
 				hit = true;
 		}
 		if (hit)
 		{
-			t_vec2	length = (t_vec2){
-				.x = player.pos.x + raydir.x * rayDist * PIXEL_SIZE,
-				.y = player.pos.y + raydir.y * rayDist * PIXEL_SIZE,
-			};
+			double	l;
+			t_vec2	length;
+			if (side == 0)
+			{
+				l = side_dist.x - delta_dist.x;
+			}
+			else
+			{
+				l = side_dist.y - delta_dist.y;
+			}
+			length.x = player.pos.x + raydir.x * l * PIXEL_SIZE;
+			length.y = player.pos.y + raydir.y * l * PIXEL_SIZE;
 			draw_line(&sys->buffer, player.pos, length);
 		}
 		i++;

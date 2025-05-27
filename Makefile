@@ -28,6 +28,7 @@ INCLUDES = -I $(MLIBX)
 HEADERS =	$(INCDIR)/engine/image.h \
 			$(INCDIR)/engine/input.h \
 			$(INCDIR)/engine/render.h \
+			$(INCDIR)/engine/raycast.h \
 			$(INCDIR)/engine/vector.h \
 			$(INCDIR)/engine/window.h \
 			$(INCDIR)/player.h \
@@ -43,7 +44,7 @@ SRC =	main.c \
 		engine/input.c \
 		engine/game.c \
 		engine/system.c \
-		engine/raycasting.c \
+		engine/raycast.c \
 		graphic/image.c \
 		graphic/render.c \
 		graphic/debug.c \
