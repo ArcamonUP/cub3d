@@ -6,7 +6,7 @@
 /*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 01:31:21 by achu              #+#    #+#             */
-/*   Updated: 2025/05/15 14:41:34 by achu             ###   ########.fr       */
+/*   Updated: 2025/05/27 14:54:40 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	render(t_system *sys)
 	t_game	*game;
 
 	game = sys->game;
-	clear_buffer(&sys->buffer, 0x505CB2);
 	int y = 0;
 	while (sys->grid->map[y])
 	{
@@ -43,13 +42,7 @@ void	render(t_system *sys)
 		}
 		y++;
 	}
-	draw_rect(&sys->buffer, (t_rect)
-					{
-						.pos.x = game->player.pos.x,
-						.pos.y = game->player.pos.y,
-						.size.x = 8,
-						.size.y = 8
-					}, GREEN);
+	draw_circle(&sys->buffer, game->player.pos, 5);
 	mlx_put_image_to_window(sys->window.mlx, sys->window.win, sys->buffer.ptr, 0, 0);
 	mlx_do_sync(sys->window.mlx);
 }

@@ -10,9 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "engine/image.h"
 #include "engine/render.h"
 #include "engine/vector.h"
+#include "common.h"
 
 void	draw_bg(t_img *buffer)
 {
@@ -89,11 +91,46 @@ void	draw_rect(t_img *image, t_rect rect, unsigned int color)
 
 void	draw_line(t_img *image, t_vec2 start, t_vec2 end)
 {
-	float	dx;
-	float	dy;
-	float	m;
+	int		dx;
+	int		dy;
+	int		step;
 
-	dx = end.x - start.x;
-	dy = end.y - start.y;
-	m = dx / dy;
+	dx = (int)end.x - (int)start.x;
+	dy = (int)end.y - (int)start.y;
+	if (abs(dx) > abs(dy))
+		step = abs(dx);
+	else
+		step = abs(dy);
+	float	inc_x = (float)dx / (float)step;
+	float	inc_y = (float)dy / (float)step;
+	int	i = 0;
+	float	x = start.x;
+	float	y = start.y;
+	while (i < step)
+	{
+		put_pixel(image, x, y, GREEN);
+		x += inc_x;
+		y += inc_y;
+		i++;
+	}
+}
+
+void	draw_circle(t_img *image, t_vec2 start, int radius)
+{
+	int			x;
+	int			y;
+	int			dst;
+
+	y = -radius;
+	while (y <= radius)
+	{
+		dst = (int)sqrt((radius * radius) - (y * y));
+		x = start.x - dst;
+		while (x <= start.x + dst)
+		{
+			put_pixel(image, x, start.y + y, MAGENTA);
+			x++;
+		}
+		y++;
+	}
 }

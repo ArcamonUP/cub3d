@@ -43,6 +43,7 @@ SRC =	main.c \
 		engine/input.c \
 		engine/game.c \
 		engine/system.c \
+		engine/raycasting.c \
 		graphic/image.c \
 		graphic/render.c \
 		graphic/debug.c \

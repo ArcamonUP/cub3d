@@ -17,6 +17,8 @@
 #include "game.h"
 #include "map.h"
 
+void	update_raycasting(t_system *sys);
+
 // void	print_map(char **map)
 // {
 // 	int	i;
@@ -74,8 +76,9 @@ static void	delta(t_system *sys)
 static int32_t	update(t_system *sys)
 {
 	delta(sys);
+	clear_buffer(&sys->buffer, 0x505CB2);
 	update_player(&sys->game->player, sys->input, sys->delta);
-	//raycast
+	update_raycasting(sys);
 	update_input(sys->input);
 	render(sys);
 	return (0);

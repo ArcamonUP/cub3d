@@ -6,7 +6,7 @@
 /*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:12:25 by achu              #+#    #+#             */
-/*   Updated: 2025/05/26 16:09:29 by achu             ###   ########.fr       */
+/*   Updated: 2025/05/27 13:16:06 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_player	init_player(void)
 	};
 	player.dir = (t_vec2){
 		.x = 0,
-		.y = 1,
+		.y = -1,
 	};
 	player.fov = 60;
 	return (player);
@@ -42,19 +42,21 @@ static void	player_input(t_input *controller, t_keybind *keybind)
 	controller->turn.x = 0;
 	controller->turn.y = 0;
 	if (keybind[W].hold)
-		controller->move.y -= 1;
-	if (keybind[S].hold)
 		controller->move.y += 1;
+	if (keybind[S].hold)
+		controller->move.y -= 1;
 	if (keybind[D].hold)
-		controller->move.x -= 1;
-	if (keybind[A].hold)
 		controller->move.x += 1;
+	if (keybind[A].hold)
+		controller->move.x -= 1;
 	if (keybind[LEFT].hold)
 		controller->turn.x -= 1;
 	if (keybind[RIGHT].hold)
 		controller->turn.x += 1;
 	controller->sprint_hold = keybind[SHIFT].hold;
 }
+
+#include <stdio.h>
 
 void	update_player(t_player *player, t_keybind *keybind, double delta)
 {

@@ -31,5 +31,7 @@ void	render(t_system *sys);
 void	draw_bg(t_img *game);
 void	draw_square(t_img *image, t_rect rect, unsigned int color);
 void	draw_rect(t_img *image, t_rect rect, unsigned int color);
+void	draw_line(t_img *image, t_vec2 start, t_vec2 end);
+void	draw_circle(t_img *image, t_vec2 start, int radius);
 
 #endif

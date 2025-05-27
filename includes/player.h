@@ -19,6 +19,7 @@
 # define TURN_SPEED 180
 # define STRAFE_SPEED 80
 # define MAX_SPEED 90
+# define FOV 0.66
 
 # define TURN_LEFT -0.5
 
