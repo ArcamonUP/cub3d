@@ -89,32 +89,6 @@ void	draw_rect(t_img *image, t_rect rect, unsigned int color)
 	}
 }
 
-void	draw_line(t_img *image, t_vec2 start, t_vec2 end)
-{
-	int		dx;
-	int		dy;
-	int		step;
-
-	dx = (int)end.x - (int)start.x;
-	dy = (int)end.y - (int)start.y;
-	if (abs(dx) > abs(dy))
-		step = abs(dx);
-	else
-		step = abs(dy);
-	float	inc_x = (float)dx / (float)step;
-	float	inc_y = (float)dy / (float)step;
-	int	i = 0;
-	float	x = start.x;
-	float	y = start.y;
-	while (i < step)
-	{
-		put_pixel(image, x, y, GREEN);
-		x += inc_x;
-		y += inc_y;
-		i++;
-	}
-}
-
 void	draw_circle(t_img *image, t_vec2 start, int radius)
 {
 	int			x;
@@ -131,6 +105,24 @@ void	draw_circle(t_img *image, t_vec2 start, int radius)
 			put_pixel(image, x, start.y + y, MAGENTA);
 			x++;
 		}
+		y++;
+	}
+}
+
+void draw_stripe(t_img *image, int x, int start_y, int end_y, uint32_t color)
+{
+	int	y;
+
+	if (x < 0 || image->w <= x)
+		return ;
+	if (start_y < 0)
+		start_y = 0;
+	if (end_y >= image->h)
+		end_y = image->h - 1;
+	y = start_y;
+	while (y <= end_y)
+	{
+		put_pixel(image, x, y, color);
 		y++;
 	}
 }

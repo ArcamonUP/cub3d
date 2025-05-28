@@ -6,7 +6,7 @@
 /*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 17:14:36 by achu              #+#    #+#             */
-/*   Updated: 2025/05/27 17:39:08 by achu             ###   ########.fr       */
+/*   Updated: 2025/05/28 17:21:42 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_ray
 	double		raylength;
 	t_vec2		step;
 
+	double		perpwall_dist;
 	int			side;
 }	t_ray;
 
