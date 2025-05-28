@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "map.h"
 #include "libft.h"
 
 void	free_tab(char **tab)
@@ -26,7 +26,7 @@ void	free_tab(char **tab)
 	free(tab);
 }
 
-t_data	destroy_data(t_data data)
+t_map	destroy_data(t_map data)
 {
 	if (data.ceiling_color)
 		free(data.ceiling_color);

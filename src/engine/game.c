@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.h                                           :+:      :+:    :+:   */
+/*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/13 17:49:47 by achu              #+#    #+#             */
-/*   Updated: 2025/05/13 17:49:53 by achu             ###   ########.fr       */
+/*   Created: 2025/05/14 22:50:40 by achu              #+#    #+#             */
+/*   Updated: 2025/05/14 22:55:25 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR_H
-# define VECTOR_H
+#include <stdio.h>
+#include <stdlib.h>
+#include "game.h"
 
-# include <stdbool.h>
-
-typedef struct s_vec2
+t_game	*init_game(t_display window)
 {
-	double	x;
-	double	y;
-}	t_vec2;
+	t_game	*game;
 
-typedef struct s_rect
-{
-	t_vec2	pos;
-	t_vec2	size;
-}	t_rect;
+	game = (t_game *)malloc(sizeof(t_game));
+	if (!game)
+		return (NULL);
+	game->player = init_player();
+	return (game);
+}
 
-bool	is_point_in_rect(t_vec2 point, t_rect rect);
-bool	is_collided(t_rect a, t_rect b);
-t_vec2	ft_penetration(t_rect a, t_rect b);
+// void	destroy_game(t_game *game)
+// {
 
-#endif
+// }

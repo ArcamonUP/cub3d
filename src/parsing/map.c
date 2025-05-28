@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "map.h"
 #include "libft.h"
 
 int	check_around(char **map, int i, int j)
@@ -42,7 +42,7 @@ int	check_around(char **map, int i, int j)
 	return (0);
 }
 
-t_data	check_bords(t_data data)
+t_map	check_bords(t_map data)
 {
 	int	i;
 	int	j;
@@ -68,7 +68,7 @@ t_data	check_bords(t_data data)
 	return (data);
 }
 
-t_data	parse_map(t_data data, int i, int spawn)
+t_map	parse_map(t_map data, int i, int spawn)
 {
 	int	j;
 

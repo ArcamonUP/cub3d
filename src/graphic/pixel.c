@@ -39,31 +39,6 @@ unsigned int	pixel_alpha(int color, float alpha)
 	return ((int)(alpha * 255) << 24 | color);
 }
 
-// Scale the pixel from an image to another image
-void	pixel_scale(t_img *old, t_img *new, int scale)
-{
-	int	x;
-	int	y;
-	int	scaled_x;
-	int	scaled_y;
-
-	if (scale < 0)
-		return ;
-	scaled_x = old->w * scale;
-	scaled_y = old->h * scale;
-	y = 0;
-	while (y < scaled_y)
-	{
-		x = 0;
-		while (x < scaled_x)
-		{
-			put_pixel(new, x, y, get_pixel(old, x / scale, y / scale));
-			x++;
-		}
-		y++;
-	}
-}
-
 void	clear_buffer(t_img *buffer, unsigned int color)
 {
 	int	x;

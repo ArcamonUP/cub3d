@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.h                                           :+:      :+:    :+:   */
+/*   system.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/13 17:49:47 by achu              #+#    #+#             */
-/*   Updated: 2025/05/13 17:49:53 by achu             ###   ########.fr       */
+/*   Created: 2025/05/14 22:42:41 by achu              #+#    #+#             */
+/*   Updated: 2025/05/14 22:48:24 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR_H
-# define VECTOR_H
+#ifndef SYSTEM_H
+# define SYSTEM_H
 
-# include <stdbool.h>
+# include "engine/window.h"
+# include "engine/image.h"
+# include "engine/input.h"
+# include "game.h"
+# include "map.h"
 
-typedef struct s_vec2
+typedef struct s_system
 {
-	double	x;
-	double	y;
-}	t_vec2;
+	t_display	window;
+	t_img		buffer;
+	t_keybind	*input;
+	t_game		*game;
+	t_map		*grid;
+	double		last;
+	double		delta;
+}	t_system;
 
-typedef struct s_rect
-{
-	t_vec2	pos;
-	t_vec2	size;
-}	t_rect;
-
-bool	is_point_in_rect(t_vec2 point, t_rect rect);
-bool	is_collided(t_rect a, t_rect b);
-t_vec2	ft_penetration(t_rect a, t_rect b);
+t_system	*init_system(void);
+int32_t		destroy_system(t_system	*sys);
+double		get_frame(void);
 
 #endif

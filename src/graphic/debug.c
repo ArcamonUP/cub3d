@@ -6,13 +6,15 @@
 /*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 01:10:02 by achu              #+#    #+#             */
-/*   Updated: 2025/05/14 01:51:45 by achu             ###   ########.fr       */
+/*   Updated: 2025/05/14 12:31:08 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "engine/image.h"
 #include "engine/render.h"
 #include "engine/vector.h"
+#include "common.h"
 
 void	draw_bg(t_img *buffer)
 {
@@ -87,13 +89,40 @@ void	draw_rect(t_img *image, t_rect rect, unsigned int color)
 	}
 }
 
-void	draw_line(t_vec2 start, t_vec2 end)
+void	draw_circle(t_img *image, t_vec2 start, int radius)
 {
-	float	dx;
-	float	dy;
-	float	m;
+	int			x;
+	int			y;
+	int			dst;
 
-	dx = end.x - start.x;
-	dy = end.y - start.y;
-	m = dx / dy;
+	y = -radius;
+	while (y <= radius)
+	{
+		dst = (int)sqrt((radius * radius) - (y * y));
+		x = start.x - dst;
+		while (x <= start.x + dst)
+		{
+			put_pixel(image, x, start.y + y, MAGENTA);
+			x++;
+		}
+		y++;
+	}
+}
+
+void draw_stripe(t_img *image, int x, int start_y, int end_y, uint32_t color)
+{
+	int	y;
+
+	if (x < 0 || image->w <= x)
+		return ;
+	if (start_y < 0)
+		start_y = 0;
+	if (end_y >= image->h)
+		end_y = image->h - 1;
+	y = start_y;
+	while (y <= end_y)
+	{
+		put_pixel(image, x, y, color);
+		y++;
+	}
 }

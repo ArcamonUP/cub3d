@@ -15,7 +15,7 @@ ORANGE=\033[38;5;214m
 
 NAME = cub3d
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -g3
 LFLAGS = -L $(MLIBX) -lmlx -lXext -lX11 -lm -lz
 
 SRCDIR = src
@@ -28,24 +28,31 @@ INCLUDES = -I $(MLIBX)
 HEADERS =	$(INCDIR)/engine/image.h \
 			$(INCDIR)/engine/input.h \
 			$(INCDIR)/engine/render.h \
+			$(INCDIR)/engine/raycast.h \
 			$(INCDIR)/engine/vector.h \
 			$(INCDIR)/engine/window.h \
-			$(INCDIR)/common.h \
 			$(INCDIR)/player.h \
+			$(INCDIR)/common.h \
+			$(INCDIR)/system.h \
 			$(INCDIR)/game.h \
 			$(INCDIR)/map.h \
 			$(LIBFT)/libft.h
 
-SRC =	cub3d.c \
+SRC =	main.c \
 		parsing/parsing.c parsing/map.c parsing/parse_utils.c parsing/errors.c \
 		init/init.c init/init_utils.c init/end.c  \
 		engine/input.c \
+		engine/game.c \
+		engine/system.c \
+		engine/raycast.c \
 		graphic/image.c \
+		graphic/render.c \
 		graphic/debug.c \
 		graphic/pixel.c \
 		graphic/window.c \
+		player/player_controller.c \
+		player/player_movement.c \
 		mini_map/mini_map.c \
-		game/event_listener.c
 
 OBJS = $(addprefix $(SRCDIR)/, $(SRC:.c=.o))
 

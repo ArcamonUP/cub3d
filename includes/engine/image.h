@@ -17,7 +17,11 @@
 # include <stdint.h>
 # include "window.h"
 
-# define PIXEL_SIZE	8
+# define PIXEL_SIZE	32
+# define IMG_NO		"../assets/no.xpm"
+# define IMG_SO		"../assets/so.xpm"
+# define IMG_WE		"../assets/we.xpm"
+# define IMG_EA		"../assets/ea.xpm"
 
 typedef struct s_img
 {

@@ -30,6 +30,8 @@ t_keybind	*init_input(void)
 	button[S].key = KEY_S;
 	button[A].key = KEY_A;
 	button[D].key = KEY_D;
+	button[LEFT].key = KEY_LEFT;
+	button[RIGHT].key = KEY_RIGHT;
 	button[SPACE].key = KEY_SPACE;
 	button[SHIFT].key = KEY_SHIFT;
 	button[ESC].key = KEY_ESC;

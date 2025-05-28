@@ -6,19 +6,7 @@
 /*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 19:19:46 by achu              #+#    #+#             */
-/*   Updated: 2025/05/14 00:35:48 by achu             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   player.h                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/10 15:09:45 by achu              #+#    #+#             */
-/*   Updated: 2025/04/22 03:37:38 by achu             ###   ########.fr       */
+/*   Updated: 2025/05/14 14:53:27 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +15,13 @@
 
 // *** Movement ***
 # define ACCEL 1200
-# define TURN 1200
 # define DECEL 600
+# define TURN_SPEED 180
+# define STRAFE_SPEED 80
 # define MAX_SPEED 90
+# define FOV 0.66
+
+# define TURN_LEFT -0.5
 
 # include <stdbool.h>
 # include "engine/input.h"
@@ -39,15 +31,21 @@
 typedef struct s_input
 {
 	t_vec2	move;
+	t_vec2	turn;
+	bool	sprint_hold;
 }	t_input;
 
 typedef struct s_player
 {
 	t_input		controller;
-	t_sprite	sprite;
-	t_vec2		start;
-	t_vec2		position;
-	uint32_t	direction;
+	t_vec2		pos;
+	double		vel;
+	double		stf;
+	t_vec2		dir;
+	uint32_t	fov;
 }	t_player;
+
+t_player	init_player(void);
+void		update_player(t_player *player, t_keybind *keybind, double delta);
 
 #endif
