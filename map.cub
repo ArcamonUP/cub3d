@@ -1,10 +1,10 @@
-NO ./wall.xpm
-SO ./wall.xpm
-WE ./wall.xpm
-EA ./wall.xpm
+NO ./textures/color_stone.xpm
+SO ./textures/eagle.xpm
+WE ./textures/wood.xpm
+EA ./textures/grey_stone.xpm
 
-F 220,100,0
-C 225,30,0
+F 255,0,0
+C 0,100,0
 
         1111111111111111111111111
         1000000000110000000000001

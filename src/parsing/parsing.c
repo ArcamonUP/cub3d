@@ -72,6 +72,7 @@ int	dispatch_init(t_map *data, char *line)
 	int	i;
 	int	error;
 
+	//Besoin de parser; format bien respecte ?
 	if (is_empty(line))
 		return (0);
 	i = 0;
@@ -131,6 +132,7 @@ t_map	parsing(int ac, char **av)
 	if (fd == -1)
 		return (error("Error\nCannot open file."), data);
 	data = init_data(data, fd);
+	//On check pas si on a tt les lignes il me semble: a verifier
 	close(fd);
 	return (parse_map(data, -1, 0));
 }
