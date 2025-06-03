@@ -6,7 +6,7 @@
 /*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 09:40:08 by kbaridon          #+#    #+#             */
-/*   Updated: 2025/05/31 13:04:06 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/06/03 10:35:09 by kbaridon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ static double	get_wall_x(t_system *sys, t_ray *ray, int *line_height)
 	result = fmod(result, 1.0);
 	if (result < 0)
 		result += 1.0;
-//	result -= floor(result);
 	return (result);
 }
 

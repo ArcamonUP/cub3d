@@ -20,6 +20,7 @@
 # define STRAFE_SPEED 80
 # define MAX_SPEED 90
 # define FOV 0.66
+# define PI 3.14159
 
 # define TURN_LEFT -0.5
 
