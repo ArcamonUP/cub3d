@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_controller.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:12:25 by achu              #+#    #+#             */
-/*   Updated: 2025/06/03 13:03:18 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/06/03 15:25:04 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,40 @@
 void	player_direction(t_player *player, double delta);
 void	player_turn(t_player *player, double delta);
 
+static bool	is_player(char c)
+{
+	if (c == 'N')
+		return (true);
+	else if (c == 'S')
+		return (true);
+	else if (c == 'W')
+		return (true);
+	else if (c == 'E')
+		return (true);
+	return (false);
+}
+
 t_vec2	get_start_pos(t_system sys)
 {
-	int		i;
-	int		j;
+	int		y;
+	int		x;
 	t_vec2	pos;
 
-	i = 0;
-	while (sys.grid->map[i])
+	y = 0;
+	while (sys.grid->map[y])
 	{
-		j = 0;
-		while (sys.grid->map[i][j])
+		x = 0;
+		while (sys.grid->map[y][x])
 		{
-			if (sys.grid->map[i][j] != '0' && sys.grid->map[i][j] != '1')
+			if (is_player(sys.grid->map[y][x]))
 			{
-				pos.x = (j + 0.49) * PIXEL_SIZE;
-				pos.y = (i + 0.49) * PIXEL_SIZE;
+				pos.x = x * PIXEL_SIZE + 16.0f;
+				pos.y = y * PIXEL_SIZE + 16.0f;
 				return (pos);
 			}
-			j++;
+			x++;
 		}
-		i++;
+		y++;
 	}
 	pos.x = 0;
 	pos.y = 0;
@@ -46,24 +59,24 @@ t_vec2	get_start_pos(t_system sys)
 t_vec2	get_start_dir(t_system sys, t_vec2 pos)
 {
 	t_vec2	dir;
-	int		i;
-	int		j;
+	int		x;
+	int		y;
 
-	i = (pos.y / PIXEL_SIZE) - 0.49;
-	j = (pos.x / PIXEL_SIZE) - 0.49;
+	x = (pos.x - 16.0f) / PIXEL_SIZE;
+	y = (pos.y - 16.0f) / PIXEL_SIZE;
 	dir.x = 0;
 	dir.y = -1;
-	if (sys.grid->map[i][j] == 'S')
+	if (sys.grid->map[y][x] == 'S')
 	{
 		dir.x = 0;
 		dir.y = 1;
 	}
-	if (sys.grid->map[i][j] == 'W')
+	else if (sys.grid->map[y][x] == 'W')
 	{
 		dir.x = -1;
 		dir.y = 0;
 	}
-	if (sys.grid->map[i][j] == 'E')
+	else if (sys.grid->map[y][x] == 'E')
 	{
 		dir.x = 1;
 		dir.y = 0;

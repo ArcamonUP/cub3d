@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:38:21 by achu              #+#    #+#             */
-/*   Updated: 2025/06/03 12:47:49 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/06/03 15:31:17 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,7 @@ static bool	is_rayhit(char **map, t_ray *ray)
 			ray->side_dist.y += ray->delta_dist.y;
 			ray->side = 1;
 		}
-		if (map[(int)ray->grid.y][(int)ray->grid.x] && \
-			map[(int)ray->grid.y][(int)ray->grid.x] == '1')
+		if (map[(int)ray->grid.y][(int)ray->grid.x] == '1')
 			hit = true;
 	}
 	return (hit);
@@ -98,8 +97,8 @@ void	update_raycasting(t_system *sys)
 	while (i < WINDOW_WIDTH)
 	{
 		camera = 2.0f * i / (double)WINDOW_WIDTH - 1.0f;
-		ray.raydir.x = player.dir.x + (-player.dir.y) * 0.66f * camera;
-		ray.raydir.y = player.dir.y + player.dir.x * 0.66f * camera;
+		ray.raydir.x = player.dir.x + (-player.dir.y) * 0.9f * camera;
+		ray.raydir.y = player.dir.y + player.dir.x * 0.9f * camera;
 		ray.delta_dist = pythagora(ray.raydir);
 		ray.grid.x = (int)(player.pos.x / PIXEL_SIZE);
 		ray.grid.y = (int)(player.pos.y / PIXEL_SIZE);
