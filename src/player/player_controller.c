@@ -6,7 +6,7 @@
 /*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:12:25 by achu              #+#    #+#             */
-/*   Updated: 2025/06/03 15:25:04 by achu             ###   ########.fr       */
+/*   Updated: 2025/06/03 16:30:00 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ t_player	init_player(t_system sys)
 
 	player.controller.move = (t_vec2){.x = 0.0f, .y = 0.0f,};
 	player.controller.turn = (t_vec2){.x = 0.0f, .y = 0.0f,};
+	player.controller.mouse_x = 0;
 	player.vel = 0;
 	player.stf = 0;
 	player.pos = get_start_pos(sys);
@@ -98,32 +99,34 @@ t_player	init_player(t_system sys)
 	return (player);
 }
 
-static void	player_input(t_input *controller, t_keybind *keybind)
+static void	player_input(t_input *controller, t_system *sys)
 {
 	controller->move.x = 0;
 	controller->move.y = 0;
 	controller->turn.x = 0;
 	controller->turn.y = 0;
-	if (keybind[W].hold)
+	if (sys->input[W].hold)
 		controller->move.y += 1;
-	if (keybind[S].hold)
+	if (sys->input[S].hold)
 		controller->move.y -= 1;
-	if (keybind[D].hold)
+	if (sys->input[D].hold)
 		controller->move.x += 1;
-	if (keybind[A].hold)
+	if (sys->input[A].hold)
 		controller->move.x -= 1;
-	if (keybind[LEFT].hold)
+	if (sys->input[LEFT].hold)
 		controller->turn.x -= 1;
-	if (keybind[RIGHT].hold)
+	if (sys->input[RIGHT].hold)
 		controller->turn.x += 1;
-	controller->sprint_hold = keybind[SHIFT].hold;
+	controller->mouse_x = -sys->move_x * 0.003f;
+	controller->sprint_hold = sys->input[SHIFT].hold;
+	sys->move_x = 0;
 }
 
 #include <stdio.h>
 
-void	update_player(t_player *player, t_keybind *keybind, double delta)
+void	update_player(t_player *player, t_system *sys, double delta)
 {
-	player_input(&player->controller, keybind);
+	player_input(&player->controller, sys);
 	player_turn(player, delta);
 	player_direction(player, delta);
 	player->pos.x += player->vel * player->dir.x * delta;

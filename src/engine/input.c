@@ -89,3 +89,15 @@ int	input_release(int key, t_keybind *keybind)
 	}
 	return (0);
 }
+
+#include <stdio.h>
+int	mouse_move(int x, int y, t_system *sys)
+{
+	int	dx;
+
+	(void)y;
+	dx = x - sys->last_x;
+	sys->move_x = dx;
+	sys->last_x = x;
+	return (0);
+}
