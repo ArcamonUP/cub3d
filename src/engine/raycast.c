@@ -6,7 +6,7 @@
 /*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:38:21 by achu              #+#    #+#             */
-/*   Updated: 2025/06/03 16:54:13 by achu             ###   ########.fr       */
+/*   Updated: 2025/06/04 00:16:40 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,6 @@
 #include "common.h"
 #include "system.h"
 #include "engine/wall.h"
-
-void draw_ray(t_img *buf, t_vec2 start, t_vec2 raydir, double max_length, char **map)
-{
-	float	i;
-	double	x;
-	double	y;
-	int		grid_x;
-	int		grid_y;
-
-	i = 0.0f;
-	while (i < max_length)
-	{
-		x = start.x + raydir.x * i;
-		y = start.y + raydir.y * i;
-	    grid_x = (int)(x / PIXEL_SIZE);
-        grid_y = (int)(y / PIXEL_SIZE);
-		if (map[grid_y][grid_x] == '1')
-			break ;
-		put_pixel(buf, (int)x, (int)y, GREEN);
-		i += 0.5f;
-	}
-}
 
 static t_vec2	pythagora(t_vec2 dir)
 {
@@ -126,7 +104,6 @@ void	update_raycasting(t_system *sys)
 		ray.grid.y = (int)(player.pos.y / PIXEL_SIZE);
 		get_sidedist(&ray, player);
 		is_rayhit(sys->grid->map, &ray);
-		draw_ray(&sys->buffer, player.pos, ray.raydir, 1000.0f, sys->grid->map);
 		draw_wall(sys, &ray, i);
 		i++;
 	}

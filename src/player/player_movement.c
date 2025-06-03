@@ -44,8 +44,10 @@ void	player_turn(t_player *player, double delta)
 		player->dir.y = temp * sin(current) + player->dir.y * cos(current);
 	}
 	temp = player->dir.x;
-	player->dir.x = temp * cos(player->controller.mouse_x) - player->dir.y * sin(player->controller.mouse_x);
-	player->dir.y = temp * sin(player->controller.mouse_x) + player->dir.y * cos(player->controller.mouse_x);
+	player->dir.x = temp * cos(player->controller.mouse_x)
+		- player->dir.y * sin(player->controller.mouse_x);
+	player->dir.y = temp * sin(player->controller.mouse_x)
+		+ player->dir.y * cos(player->controller.mouse_x);
 }
 
 void	player_direction(t_player *player, double delta)

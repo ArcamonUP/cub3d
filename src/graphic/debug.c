@@ -110,21 +110,3 @@ void	draw_circle(t_img *image, t_vec2 start, int radius)
 		y++;
 	}
 }
-
-void draw_stripe(t_img *image, int x, int start_y, int end_y, uint32_t color)
-{
-	int	y;
-
-	if (x < 0 || image->w <= x)
-		return ;
-	if (start_y < 0)
-		start_y = 0;
-	if (end_y >= image->h)
-		end_y = image->h - 1;
-	y = start_y;
-	while (y <= end_y)
-	{
-		put_pixel(image, x, y, color);
-		y++;
-	}
-}

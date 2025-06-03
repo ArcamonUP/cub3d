@@ -15,7 +15,7 @@
 
 t_img	new_xpm(t_display window, char *file)
 {
-	t_img image;
+	t_img	image;
 
 	image.w = 0;
 	image.h = 0;
@@ -23,14 +23,14 @@ t_img	new_xpm(t_display window, char *file)
 	if (!image.ptr)
 		ft_perror("Error: Image could not be read");
 	image.addr = mlx_get_data_addr(image.ptr,
-		&(image.bpp), &(image.llen), &(image.endian));
+			&(image.bpp), &(image.llen), &(image.endian));
 	image.screen = window;
 	return (image);
 }
 
 t_img	new_img(t_display window, int w, int h)
 {
-	t_img image;
+	t_img	image;
 
 	image.w = w;
 	image.h = h;
@@ -38,13 +38,13 @@ t_img	new_img(t_display window, int w, int h)
 	if (!image.ptr)
 		ft_perror("Error: Failed to create image");
 	image.addr = mlx_get_data_addr(image.ptr,
-		&(image.bpp), &(image.llen), &(image.endian));
+			&(image.bpp), &(image.llen), &(image.endian));
 	image.screen = window;
 	return (image);
 }
 
 void	destroy_img(t_img image)
 {
-	if (image.ptr && image.screen.mlx) 
+	if (image.ptr && image.screen.mlx)
 		mlx_destroy_image(image.screen.mlx, image.ptr);
 }

@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "player.h"
 #include "system.h"
 
@@ -121,16 +122,27 @@ static void	player_input(t_input *controller, t_system *sys)
 	controller->sprint_hold = sys->input[SHIFT].hold;
 	sys->move_x = 0;
 }
-
 #include <stdio.h>
-
 void	update_player(t_player *player, t_system *sys, double delta)
 {
+	double	fwd_x;
+	double	fwd_y;
+	double	stf_x;
+	double	stf_y;
+
+	fwd_x = player->pos.x + player->vel * player->dir.x * delta;
+	fwd_y = player->pos.y + player->vel * player->dir.y * delta;
+	stf_x = player->stf * -player->dir.y * delta;
+	stf_y = player->stf * player->dir.x * delta;
 	player_input(&player->controller, sys);
 	player_turn(player, delta);
 	player_direction(player, delta);
-	player->pos.x += player->vel * player->dir.x * delta;
-	player->pos.y += player->vel * player->dir.y * delta;
-	player->pos.x += player->stf * -player->dir.y * delta;
-	player->pos.y += player->stf * player->dir.x * delta;
+	if (sys->grid->map[(int)(player->pos.y / PIXEL_SIZE)][(int)(fwd_x / PIXEL_SIZE)] != '1')
+		player->pos.x = fwd_x;
+	if (sys->grid->map[(int)(fwd_y / PIXEL_SIZE)][(int)(player->pos.x / PIXEL_SIZE)] != '1')	
+		player->pos.y = fwd_y;
+	if (sys->grid->map[(int)(player->pos.y / PIXEL_SIZE)][(int)((player->pos.x + stf_x) / PIXEL_SIZE)] != '1')
+		player->pos.x += player->stf * -player->dir.y * delta;
+	if (sys->grid->map[(int)((player->pos.y + stf_y) / PIXEL_SIZE)][(int)(player->pos.x / PIXEL_SIZE)] != '1')	
+		player->pos.y += player->stf * player->dir.x * delta;
 }
