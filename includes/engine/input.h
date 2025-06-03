@@ -35,6 +35,8 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 
+typedef struct s_system	t_system;
+
 typedef enum e_action
 {
 	W,
@@ -58,7 +60,7 @@ typedef struct s_keybind
 
 t_keybind	*init_input(void);
 void		update_input(t_keybind *keybind);
-int			input_press(int key, t_keybind *manager);
+int			input_press(int key, t_system *sys);
 int			input_release(int key, t_keybind *manager);
 
 #endif
