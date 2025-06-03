@@ -6,7 +6,7 @@
 /*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:38:21 by achu              #+#    #+#             */
-/*   Updated: 2025/05/31 13:13:20 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/06/03 12:47:49 by kbaridon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ static bool	is_rayhit(char **map, t_ray *ray)
 			ray->side_dist.y += ray->delta_dist.y;
 			ray->side = 1;
 		}
-		if (map[(int)ray->grid.y][(int)ray->grid.x] == '1')
+		if (map[(int)ray->grid.y][(int)ray->grid.x] && \
+			map[(int)ray->grid.y][(int)ray->grid.x] == '1')
 			hit = true;
 	}
 	return (hit);
