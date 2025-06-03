@@ -17,6 +17,8 @@
 # include "engine/window.h"
 # include "player.h"
 
+typedef struct s_system	t_system;
+
 typedef struct s_game
 {
 	t_img			no;
@@ -29,6 +31,7 @@ typedef struct s_game
 	t_player		player;
 }	t_game;
 
-t_game	*init_game(t_display window);
+t_game	*init_game(t_system sys);
+t_img	create_image(void *mlx, char *path);
 
 #endif

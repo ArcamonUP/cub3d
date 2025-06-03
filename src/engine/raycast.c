@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:38:21 by achu              #+#    #+#             */
-/*   Updated: 2025/05/28 17:38:08 by achu             ###   ########.fr       */
+/*   Updated: 2025/06/03 12:47:49 by kbaridon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,21 @@
 #include "engine/render.h"
 #include "common.h"
 #include "system.h"
+#include "engine/wall.h"
 
 static t_vec2	pythagora(t_vec2 dir)
 {
-	t_vec2	distance;
+	t_vec2	delta;
 
-	distance.x = sqrt(1 + (dir.y * dir.y) / (dir.x * dir.x));
-	distance.y = sqrt(1 + (dir.x * dir.x) / (dir.y * dir.y));
-	return (distance);
+	if (dir.x == 0)
+		delta.x = 1e30;
+	else
+		delta.x = fabs(1.0 / dir.x);
+	if (dir.y == 0)
+		delta.y = 1e30;
+	else
+		delta.y = fabs(1.0 / dir.y);
+	return (delta);
 }
 
 static void	get_sidedist(t_ray *ray, t_player player)
@@ -72,36 +79,11 @@ static bool	is_rayhit(char **map, t_ray *ray)
 			ray->side_dist.y += ray->delta_dist.y;
 			ray->side = 1;
 		}
-		if (map[(int)ray->grid.y][(int)ray->grid.x] == '1')
+		if (map[(int)ray->grid.y][(int)ray->grid.x] && \
+			map[(int)ray->grid.y][(int)ray->grid.x] == '1')
 			hit = true;
 	}
 	return (hit);
-}
-
-static void	draw_wall(t_img *image, t_ray *ray, int x)
-{
-	double		perpwall_dist;
-	int			line_height;
-	int			start_y;
-	int			end_y;
-	int			color;
-
-	if (ray->side == 0)
-		perpwall_dist = ray->side_dist.x - ray->delta_dist.x;
-	else
-		perpwall_dist = ray->side_dist.y - ray->delta_dist.y;
-	line_height = (int)(WINDOW_HEIGHT / perpwall_dist);
-	start_y = -line_height / 2 + WINDOW_HEIGHT / 2;
-	if (start_y < 0)
-		start_y = 0;
-	end_y = line_height / 2 + WINDOW_HEIGHT / 2;
-	if (end_y >= WINDOW_HEIGHT)
-		end_y = WINDOW_HEIGHT - 1;
-	if (ray->side == 1)
-		color = CYAN;
-	else
-		color = BLUE;
-	draw_stripe(image, x, start_y, end_y, color);
 }
 
 void	update_raycasting(t_system *sys)
@@ -119,11 +101,11 @@ void	update_raycasting(t_system *sys)
 		ray.raydir.x = player.dir.x + (-player.dir.y) * 0.66f * camera;
 		ray.raydir.y = player.dir.y + player.dir.x * 0.66f * camera;
 		ray.delta_dist = pythagora(ray.raydir);
-		ray.grid.x = (int)player.pos.x / PIXEL_SIZE;
-		ray.grid.y = (int)player.pos.y / PIXEL_SIZE;
+		ray.grid.x = (int)(player.pos.x / PIXEL_SIZE);
+		ray.grid.y = (int)(player.pos.y / PIXEL_SIZE);
 		get_sidedist(&ray, player);
 		is_rayhit(sys->grid->map, &ray);
-		draw_wall(&sys->buffer, &ray, i);
+		draw_wall(sys, &ray, i);
 		i++;
 	}
 }

@@ -132,5 +132,7 @@ t_map	parsing(int ac, char **av)
 		return (error("Error\nCannot open file."), data);
 	data = init_data(data, fd);
 	close(fd);
+	if (!is_all_set(data))
+		return (destroy_data(data));
 	return (parse_map(data, -1, 0));
 }

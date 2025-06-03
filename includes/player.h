@@ -20,6 +20,7 @@
 # define STRAFE_SPEED 80
 # define MAX_SPEED 90
 # define FOV 0.66
+# define PI 3.14159
 
 # define TURN_LEFT -0.5
 
@@ -27,6 +28,8 @@
 # include "engine/input.h"
 # include "engine/image.h"
 # include "engine/vector.h"
+
+typedef struct s_system	t_system;
 
 typedef struct s_input
 {
@@ -45,7 +48,7 @@ typedef struct s_player
 	uint32_t	fov;
 }	t_player;
 
-t_player	init_player(void);
+t_player	init_player(t_system sys);
 void		update_player(t_player *player, t_keybind *keybind, double delta);
 
 #endif

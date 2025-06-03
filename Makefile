@@ -15,7 +15,7 @@ ORANGE=\033[38;5;214m
 
 NAME = cub3d
 CC = cc
-CFLAGS = -Wall -Wextra -g3
+CFLAGS = -Wall -Wextra -Werror -g3
 LFLAGS = -L $(MLIBX) -lmlx -lXext -lX11 -lm -lz
 
 SRCDIR = src
@@ -31,6 +31,7 @@ HEADERS =	$(INCDIR)/engine/image.h \
 			$(INCDIR)/engine/raycast.h \
 			$(INCDIR)/engine/vector.h \
 			$(INCDIR)/engine/window.h \
+			$(INCDIR)/engine/wall.h \
 			$(INCDIR)/player.h \
 			$(INCDIR)/common.h \
 			$(INCDIR)/system.h \
@@ -40,11 +41,12 @@ HEADERS =	$(INCDIR)/engine/image.h \
 
 SRC =	main.c \
 		parsing/parsing.c parsing/map.c parsing/parse_utils.c parsing/errors.c \
-		init/init.c init/init_utils.c init/end.c  \
 		engine/input.c \
 		engine/game.c \
 		engine/system.c \
 		engine/raycast.c \
+		engine/draw_wall.c \
+		engine/draw_floor_ceiling.c \
 		graphic/image.c \
 		graphic/render.c \
 		graphic/debug.c \

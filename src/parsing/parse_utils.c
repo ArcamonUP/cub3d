@@ -63,6 +63,23 @@ t_map	set_null(void)
 	return (grid);
 }
 
+int	is_all_set(t_map data)
+{
+	if (!data.ceiling_color)
+		return (error("Error\nCeiling color not found."), 0);
+	if (!data.floor_color)
+		return (error("Error\nFloor color not found."), 0);
+	if (!data.ea_path)
+		return (error("Error\nEA path not found."), 0);
+	if (!data.we_path)
+		return (error("Error\nWE path not found."), 0);
+	if (!data.no_path)
+		return (error("Error\nNO path not found."), 0);
+	if (!data.so_path)
+		return (error("Error\nSO path not found."), 0);
+	return (1);
+}
+
 int	ft_tablen(char **tab)
 {
 	int	i;
