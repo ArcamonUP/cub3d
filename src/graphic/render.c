@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 01:31:21 by achu              #+#    #+#             */
-/*   Updated: 2025/05/28 00:44:09 by achu             ###   ########.fr       */
+/*   Updated: 2025/06/03 15:47:34 by kbaridon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	render(t_system *sys)
 	// 	y++;
 	// }
 	// draw_circle(&sys->buffer, game->player.pos, 5);
-	mlx_put_image_to_window(sys->window.mlx, sys->window.win, sys->buffer.ptr, 0, 0);
+	mlx_put_image_to_window(sys->window.mlx, sys->window.win, \
+		sys->buffer.ptr, 0, 0);
 	mlx_do_sync(sys->window.mlx);
 }

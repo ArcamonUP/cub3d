@@ -6,7 +6,7 @@
 /*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 09:40:08 by kbaridon          #+#    #+#             */
-/*   Updated: 2025/06/03 12:32:08 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/06/03 15:43:24 by kbaridon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static double	get_wall_x(t_system *sys, t_ray *ray, int *line_height)
 		perpdis = ray->side_dist.x - ray->delta_dist.x;
 	else
 		perpdis = ray->side_dist.y - ray->delta_dist.y;
-	if (perpdis <= 0.000001) //car on spawn dans le mur actuellement
+	if (perpdis <= 0.000001)
 		perpdis = 0.000001;
 	*line_height = (int)(WINDOW_HEIGHT / perpdis);
 	if (ray->side == 0)

@@ -54,7 +54,6 @@ static int32_t	start(t_system *sys)
 
 int	main(int ac, char **av)
 {
-	//Avec map.cub: segfault instant
 	t_system	*sys;
 	t_map		data;
 

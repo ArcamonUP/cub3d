@@ -49,7 +49,6 @@ SRC =	main.c \
 		engine/draw_floor_ceiling.c \
 		graphic/image.c \
 		graphic/render.c \
-		graphic/debug.c \
 		graphic/pixel.c \
 		graphic/window.c \
 		player/player_controller.c \

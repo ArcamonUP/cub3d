@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   player_controller.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:12:25 by achu              #+#    #+#             */
-/*   Updated: 2025/06/03 15:25:04 by achu             ###   ########.fr       */
+/*   Updated: 2025/06/03 15:41:59 by kbaridon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "player.h"
 #include "system.h"
+#include <stdio.h>
 
 void	player_direction(t_player *player, double delta);
 void	player_turn(t_player *player, double delta);
@@ -118,8 +119,6 @@ static void	player_input(t_input *controller, t_keybind *keybind)
 		controller->turn.x += 1;
 	controller->sprint_hold = keybind[SHIFT].hold;
 }
-
-#include <stdio.h>
 
 void	update_player(t_player *player, t_keybind *keybind, double delta)
 {
