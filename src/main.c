@@ -44,8 +44,7 @@ static int32_t	start(t_system *sys)
 	sys->last = get_frame();
 	sys->game = init_game(*sys);
 	mlx_loop_hook(sys->window.mlx, update, sys);
-	//key ESC fonctionne pas encore
-	mlx_hook(sys->window.win, ON_KEYPRESS, 1L << 0, input_press, sys->input);
+	mlx_hook(sys->window.win, ON_KEYPRESS, 1L << 0, input_press, sys);
 	mlx_hook(sys->window.win, ON_KEYRELEASE, 1L << 1, input_release, \
 		sys->input);
 	mlx_hook(sys->window.win, ON_DESTROY, 1L << 17, destroy_system, sys);
@@ -55,6 +54,7 @@ static int32_t	start(t_system *sys)
 
 int	main(int ac, char **av)
 {
+	//Avec map.cub: segfault instant
 	t_system	*sys;
 	t_map		data;
 

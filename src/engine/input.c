@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "engine/input.h"
+#include "system.h"
 
 // Initialize all input
 t_keybind	*init_input(void)
@@ -52,11 +53,15 @@ void	update_input(t_keybind *keybind)
 }
 
 // mlx_hook for input key pressed
-int	input_press(int key, t_keybind *keybind)
+int	input_press(int key, t_system *sys)
 {
-	int	i;
+	int			i;
+	t_keybind	*keybind;
 
+	keybind = sys->input;
 	i = 0;
+	if (key == KEY_ESC)
+		destroy_system(sys);
 	while (i < MAX_ACTION)
 	{
 		if (keybind[i].key == key)
