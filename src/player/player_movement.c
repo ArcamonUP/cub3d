@@ -6,7 +6,7 @@
 /*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:20:07 by achu              #+#    #+#             */
-/*   Updated: 2025/06/03 16:23:15 by achu             ###   ########.fr       */
+/*   Updated: 2025/06/03 16:55:22 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ void	player_turn(t_player *player, double delta)
 	if (player->controller.turn.x != 0)
 	{
 		temp = player->dir.x;
-		player->dir.x = player->dir.x * cos(current) - player->dir.y * sin(current);
+		player->dir.x = temp * cos(current) - player->dir.y * sin(current);
 		player->dir.y = temp * sin(current) + player->dir.y * cos(current);
 	}
 	temp = player->dir.x;
-	player->dir.x = player->dir.x * cos(player->controller.mouse_x) - player->dir.y * sin(player->controller.mouse_x);
+	player->dir.x = temp * cos(player->controller.mouse_x) - player->dir.y * sin(player->controller.mouse_x);
 	player->dir.y = temp * sin(player->controller.mouse_x) + player->dir.y * cos(player->controller.mouse_x);
 }
 

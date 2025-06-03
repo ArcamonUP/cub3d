@@ -95,6 +95,8 @@ void	draw_circle(t_img *image, t_vec2 start, int radius)
 	int			y;
 	int			dst;
 
+	start.x = start.x / 2;
+	start.y = start.y / 2;
 	y = -radius;
 	while (y <= radius)
 	{
