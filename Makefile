@@ -41,7 +41,6 @@ HEADERS =	$(INCDIR)/engine/image.h \
 
 SRC =	main.c \
 		parsing/parsing.c parsing/map.c parsing/parse_utils.c parsing/errors.c \
-		init/init.c init/init_utils.c init/end.c  \
 		engine/input.c \
 		engine/game.c \
 		engine/system.c \

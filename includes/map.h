@@ -53,6 +53,7 @@ t_map	set_null(void);
 int		is_empty(char *line);
 int		ft_dupcheck(char *line, char **str, int *map);
 int		ft_tablen(char **tab);
+int		is_all_set(t_map data);
 
 //errors.c
 t_map	destroy_data(t_map data);

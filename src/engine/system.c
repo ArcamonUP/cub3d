@@ -37,12 +37,20 @@ t_system	*init_system(void)
 	return (sys);
 }
 
+void	destroy_game(t_game *game)
+{
+	destroy_img(game->ea);
+	destroy_img(game->no);
+	destroy_img(game->so);
+	destroy_img(game->we);
+}
+
 int32_t	destroy_system(t_system	*sys)
 {
-	//destroy_game(sys->game);
+	destroy_game(sys->game);
 	destroy_img(sys->buffer);
 	destroy_window(&sys->window);
-	//clean_map(sys->grid);
+	destroy_data(*sys->grid);
 	free(sys->game);
 	free(sys);
 	exit(0);

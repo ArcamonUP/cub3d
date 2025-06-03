@@ -29,6 +29,8 @@
 # include "engine/image.h"
 # include "engine/vector.h"
 
+typedef struct s_system	t_system;
+
 typedef struct s_input
 {
 	t_vec2	move;
@@ -46,7 +48,7 @@ typedef struct s_player
 	uint32_t	fov;
 }	t_player;
 
-t_player	init_player(void);
+t_player	init_player(t_system sys);
 void		update_player(t_player *player, t_keybind *keybind, double delta);
 
 #endif

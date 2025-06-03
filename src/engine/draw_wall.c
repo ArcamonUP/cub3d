@@ -6,7 +6,7 @@
 /*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 09:40:08 by kbaridon          #+#    #+#             */
-/*   Updated: 2025/06/03 10:35:09 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/06/03 12:32:08 by kbaridon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static int	get_texture_color(t_img *tex, int x, int y)
 static	t_img	*get_texture(t_system *sys, t_ray *ray)
 {
 	if (ray->side == 0 && ray->raydir.x > 0)
-		return (&sys->game->we);
-	else if (ray->side == 0 && ray->raydir.x < 0)
 		return (&sys->game->ea);
+	else if (ray->side == 0 && ray->raydir.x < 0)
+		return (&sys->game->we);
 	else if (ray->side == 1 && ray->raydir.y > 0)
 		return (&sys->game->no);
 	else
