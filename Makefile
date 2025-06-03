@@ -54,7 +54,6 @@ SRC =	main.c \
 		graphic/window.c \
 		player/player_controller.c \
 		player/player_movement.c \
-		mini_map/mini_map.c \
 
 OBJS = $(addprefix $(SRCDIR)/, $(SRC:.c=.o))
 
