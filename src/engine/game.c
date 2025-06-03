@@ -47,6 +47,5 @@ t_game	*init_game(t_system sys)
 	game->so = create_image(sys.window.mlx, sys.grid->so_path);
 	game->ea = create_image(sys.window.mlx, sys.grid->ea_path);
 	game->we = create_image(sys.window.mlx, sys.grid->we_path);
-	//Pas protege, il faut le faire
 	return (game);
 }

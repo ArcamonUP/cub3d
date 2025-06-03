@@ -16,19 +16,7 @@
 
 void	player_direction(t_player *player, double delta);
 void	player_turn(t_player *player, double delta);
-
-static bool	is_player(char c)
-{
-	if (c == 'N')
-		return (true);
-	else if (c == 'S')
-		return (true);
-	else if (c == 'W')
-		return (true);
-	else if (c == 'E')
-		return (true);
-	return (false);
-}
+bool	is_player(char c);
 
 t_vec2	get_start_pos(t_system sys)
 {
@@ -122,7 +110,7 @@ static void	player_input(t_input *controller, t_system *sys)
 	controller->sprint_hold = sys->input[SHIFT].hold;
 	sys->move_x = 0;
 }
-#include <stdio.h>
+
 void	update_player(t_player *player, t_system *sys, double delta)
 {
 	double	fwd_x;
@@ -137,12 +125,16 @@ void	update_player(t_player *player, t_system *sys, double delta)
 	player_input(&player->controller, sys);
 	player_turn(player, delta);
 	player_direction(player, delta);
-	if (sys->grid->map[(int)(player->pos.y / PIXEL_SIZE)][(int)(fwd_x / PIXEL_SIZE)] != '1')
+	if (sys->grid->map[(int)(player->pos.y / PIXEL_SIZE)]
+		[(int)(fwd_x / PIXEL_SIZE)] != '1')
 		player->pos.x = fwd_x;
-	if (sys->grid->map[(int)(fwd_y / PIXEL_SIZE)][(int)(player->pos.x / PIXEL_SIZE)] != '1')	
+	if (sys->grid->map[(int)(fwd_y / PIXEL_SIZE)]
+		[(int)(player->pos.x / PIXEL_SIZE)] != '1')
 		player->pos.y = fwd_y;
-	if (sys->grid->map[(int)(player->pos.y / PIXEL_SIZE)][(int)((player->pos.x + stf_x) / PIXEL_SIZE)] != '1')
+	if (sys->grid->map[(int)(player->pos.y / PIXEL_SIZE)]
+		[(int)((player->pos.x + stf_x) / PIXEL_SIZE)] != '1')
 		player->pos.x += player->stf * -player->dir.y * delta;
-	if (sys->grid->map[(int)((player->pos.y + stf_y) / PIXEL_SIZE)][(int)(player->pos.x / PIXEL_SIZE)] != '1')	
+	if (sys->grid->map[(int)((player->pos.y + stf_y) / PIXEL_SIZE)]
+		[(int)(player->pos.x / PIXEL_SIZE)] != '1')
 		player->pos.y += player->stf * player->dir.x * delta;
 }

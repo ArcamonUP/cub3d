@@ -14,6 +14,19 @@
 #include <stdbool.h>
 #include "player.h"
 
+bool	is_player(char c)
+{
+	if (c == 'N')
+		return (true);
+	else if (c == 'S')
+		return (true);
+	else if (c == 'W')
+		return (true);
+	else if (c == 'E')
+		return (true);
+	return (false);
+}
+
 static double	ft_approach(double current, double target, double step)
 {
 	if (current < target)

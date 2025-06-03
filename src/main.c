@@ -35,7 +35,8 @@ static int32_t	update(t_system *sys)
 	update_player(&sys->game->player, sys, sys->delta);
 	update_raycasting(sys);
 	update_input(sys->input);
-	mlx_mouse_move(sys->window.mlx, sys->window.win, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+	mlx_mouse_move(sys->window.mlx, sys->window.win,
+		WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 	render(sys);
 	return (0);
 }
@@ -57,7 +58,6 @@ static int32_t	start(t_system *sys)
 
 int	main(int ac, char **av)
 {
-	//Avec map.cub: segfault instant
 	t_system	*sys;
 	t_map		data;
 
