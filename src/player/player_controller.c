@@ -6,7 +6,7 @@
 /*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:12:25 by achu              #+#    #+#             */
-/*   Updated: 2025/06/03 15:14:23 by achu             ###   ########.fr       */
+/*   Updated: 2025/06/03 15:25:04 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ t_vec2	get_start_pos(t_system sys)
 		{
 			if (is_player(sys.grid->map[y][x]))
 			{
-				pos.x = x * PIXEL_SIZE + 0.5f;
-				pos.y = y * PIXEL_SIZE + 0.5f;
+				pos.x = x * PIXEL_SIZE + 16.0f;
+				pos.y = y * PIXEL_SIZE + 16.0f;
 				return (pos);
 			}
 			x++;
@@ -62,8 +62,8 @@ t_vec2	get_start_dir(t_system sys, t_vec2 pos)
 	int		x;
 	int		y;
 
-	x = (int)(pos.x / PIXEL_SIZE) - 0.5f;
-	y = (int)(pos.y / PIXEL_SIZE) - 0.5f;
+	x = (pos.x - 16.0f) / PIXEL_SIZE;
+	y = (pos.y - 16.0f) / PIXEL_SIZE;
 	dir.x = 0;
 	dir.y = -1;
 	if (sys.grid->map[y][x] == 'S')

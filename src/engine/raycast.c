@@ -6,7 +6,7 @@
 /*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:38:21 by achu              #+#    #+#             */
-/*   Updated: 2025/06/03 15:06:54 by achu             ###   ########.fr       */
+/*   Updated: 2025/06/03 15:31:17 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ void	update_raycasting(t_system *sys)
 		ray.delta_dist = pythagora(ray.raydir);
 		ray.grid.x = (int)(player.pos.x / PIXEL_SIZE);
 		ray.grid.y = (int)(player.pos.y / PIXEL_SIZE);
-		printf("%lf:%lf\n", player.pos.x, player.pos.y);
 		get_sidedist(&ray, player);
 		is_rayhit(sys->grid->map, &ray);
 		draw_wall(sys, &ray, i);
