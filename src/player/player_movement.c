@@ -3,16 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   player_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:20:07 by achu              #+#    #+#             */
-/*   Updated: 2025/06/03 10:58:36 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/06/03 16:55:22 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include <stdbool.h>
 #include "player.h"
+
+bool	is_player(char c)
+{
+	if (c == 'N')
+		return (true);
+	else if (c == 'S')
+		return (true);
+	else if (c == 'W')
+		return (true);
+	else if (c == 'E')
+		return (true);
+	return (false);
+}
 
 static double	ft_approach(double current, double target, double step)
 {
@@ -43,6 +56,11 @@ void	player_turn(t_player *player, double delta)
 		player->dir.x = temp * cos(current) - player->dir.y * sin(current);
 		player->dir.y = temp * sin(current) + player->dir.y * cos(current);
 	}
+	temp = player->dir.x;
+	player->dir.x = temp * cos(player->controller.mouse_x)
+		- player->dir.y * sin(player->controller.mouse_x);
+	player->dir.y = temp * sin(player->controller.mouse_x)
+		+ player->dir.y * cos(player->controller.mouse_x);
 }
 
 void	player_direction(t_player *player, double delta)

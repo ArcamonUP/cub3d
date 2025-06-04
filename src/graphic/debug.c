@@ -95,6 +95,8 @@ void	draw_circle(t_img *image, t_vec2 start, int radius)
 	int			y;
 	int			dst;
 
+	start.x = start.x / 2;
+	start.y = start.y / 2;
 	y = -radius;
 	while (y <= radius)
 	{
@@ -105,24 +107,6 @@ void	draw_circle(t_img *image, t_vec2 start, int radius)
 			put_pixel(image, x, start.y + y, MAGENTA);
 			x++;
 		}
-		y++;
-	}
-}
-
-void draw_stripe(t_img *image, int x, int start_y, int end_y, uint32_t color)
-{
-	int	y;
-
-	if (x < 0 || image->w <= x)
-		return ;
-	if (start_y < 0)
-		start_y = 0;
-	if (end_y >= image->h)
-		end_y = image->h - 1;
-	y = start_y;
-	while (y <= end_y)
-	{
-		put_pixel(image, x, y, color);
 		y++;
 	}
 }

@@ -6,28 +6,17 @@
 /*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:12:25 by achu              #+#    #+#             */
-/*   Updated: 2025/06/03 15:25:04 by achu             ###   ########.fr       */
+/*   Updated: 2025/06/03 16:30:00 by achu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "player.h"
 #include "system.h"
 
 void	player_direction(t_player *player, double delta);
 void	player_turn(t_player *player, double delta);
-
-static bool	is_player(char c)
-{
-	if (c == 'N')
-		return (true);
-	else if (c == 'S')
-		return (true);
-	else if (c == 'W')
-		return (true);
-	else if (c == 'E')
-		return (true);
-	return (false);
-}
+bool	is_player(char c);
 
 t_vec2	get_start_pos(t_system sys)
 {
@@ -90,6 +79,7 @@ t_player	init_player(t_system sys)
 
 	player.controller.move = (t_vec2){.x = 0.0f, .y = 0.0f,};
 	player.controller.turn = (t_vec2){.x = 0.0f, .y = 0.0f,};
+	player.controller.mouse_x = 0;
 	player.vel = 0;
 	player.stf = 0;
 	player.pos = get_start_pos(sys);
@@ -98,36 +88,53 @@ t_player	init_player(t_system sys)
 	return (player);
 }
 
-static void	player_input(t_input *controller, t_keybind *keybind)
+static void	player_input(t_input *controller, t_system *sys)
 {
 	controller->move.x = 0;
 	controller->move.y = 0;
 	controller->turn.x = 0;
 	controller->turn.y = 0;
-	if (keybind[W].hold)
+	if (sys->input[W].hold)
 		controller->move.y += 1;
-	if (keybind[S].hold)
+	if (sys->input[S].hold)
 		controller->move.y -= 1;
-	if (keybind[D].hold)
+	if (sys->input[D].hold)
 		controller->move.x += 1;
-	if (keybind[A].hold)
+	if (sys->input[A].hold)
 		controller->move.x -= 1;
-	if (keybind[LEFT].hold)
+	if (sys->input[LEFT].hold)
 		controller->turn.x -= 1;
-	if (keybind[RIGHT].hold)
+	if (sys->input[RIGHT].hold)
 		controller->turn.x += 1;
-	controller->sprint_hold = keybind[SHIFT].hold;
+	controller->mouse_x = -sys->move_x * 0.003f;
+	controller->sprint_hold = sys->input[SHIFT].hold;
+	sys->move_x = 0;
 }
 
-#include <stdio.h>
-
-void	update_player(t_player *player, t_keybind *keybind, double delta)
+void	update_player(t_player *player, t_system *sys, double delta)
 {
-	player_input(&player->controller, keybind);
+	double	fwd_x;
+	double	fwd_y;
+	double	stf_x;
+	double	stf_y;
+
+	fwd_x = player->pos.x + player->vel * player->dir.x * delta;
+	fwd_y = player->pos.y + player->vel * player->dir.y * delta;
+	stf_x = player->stf * -player->dir.y * delta;
+	stf_y = player->stf * player->dir.x * delta;
+	player_input(&player->controller, sys);
 	player_turn(player, delta);
 	player_direction(player, delta);
-	player->pos.x += player->vel * player->dir.x * delta;
-	player->pos.y += player->vel * player->dir.y * delta;
-	player->pos.x += player->stf * -player->dir.y * delta;
-	player->pos.y += player->stf * player->dir.x * delta;
+	if (sys->grid->map[(int)(player->pos.y / PIXEL_SIZE)]
+		[(int)(fwd_x / PIXEL_SIZE)] != '1')
+		player->pos.x = fwd_x;
+	if (sys->grid->map[(int)(fwd_y / PIXEL_SIZE)]
+		[(int)(player->pos.x / PIXEL_SIZE)] != '1')
+		player->pos.y = fwd_y;
+	if (sys->grid->map[(int)(player->pos.y / PIXEL_SIZE)]
+		[(int)((player->pos.x + stf_x) / PIXEL_SIZE)] != '1')
+		player->pos.x += player->stf * -player->dir.y * delta;
+	if (sys->grid->map[(int)((player->pos.y + stf_y) / PIXEL_SIZE)]
+		[(int)(player->pos.x / PIXEL_SIZE)] != '1')
+		player->pos.y += player->stf * player->dir.x * delta;
 }

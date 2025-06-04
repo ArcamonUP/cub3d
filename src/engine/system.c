@@ -32,6 +32,8 @@ t_system	*init_system(void)
 	sys->window = init_window();
 	sys->buffer = new_img(sys->window, WINDOW_WIDTH, WINDOW_HEIGHT);
 	sys->input = init_input();
+	sys->move_x = 0;
+	sys->last_x = WINDOW_WIDTH / 2;
 	sys->last = 0;
 	sys->delta = 0;
 	return (sys);
