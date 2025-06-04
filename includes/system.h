@@ -30,6 +30,7 @@ typedef struct s_system
 	t_map		*grid;
 	double		last;
 	double		delta;
+	int			mouse;
 }	t_system;
 
 t_system	*init_system(void);

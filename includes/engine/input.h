@@ -26,6 +26,7 @@
 # define KEY_SPACE 			32
 # define KEY_SHIFT 			65505
 # define KEY_ESC			65307
+# define KEY_M				109
 
 # define ON_KEYPRESS		2
 # define ON_KEYRELEASE		3

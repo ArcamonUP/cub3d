@@ -36,6 +36,7 @@ t_system	*init_system(void)
 	sys->last_x = WINDOW_WIDTH / 2;
 	sys->last = 0;
 	sys->delta = 0;
+	sys->mouse = 0;
 	return (sys);
 }
 
