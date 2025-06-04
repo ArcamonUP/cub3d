@@ -22,7 +22,7 @@
 typedef struct s_system
 {
 	t_display	window;
-	t_img		buffer;
+	t_image		buffer;
 	t_keybind	*input;
 	int			move_x;
 	int			last_x;

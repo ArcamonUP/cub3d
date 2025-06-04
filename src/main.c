@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <X11/extensions/Xfixes.h>
+#include "mlx_int.h"
 #include "engine/render.h"
 #include "engine/input.h"
 #include "common.h"
@@ -41,12 +43,24 @@ static int32_t	update(t_system *sys)
 	return (0);
 }
 
+void	mlx_mouse_hide_no_leak(void *mlx, void *win)
+{
+	t_xvar		*xvar;
+	t_win_list	*xwin;
+
+	if (mlx == NULL || win == NULL)
+		return ;
+	xvar = (t_xvar *)mlx;
+	xwin = (t_win_list *)win;
+	XFixesHideCursor(xvar->display, xwin->window);
+}
+
 static int32_t	start(t_system *sys)
 {
 	sys->last = get_frame();
 	sys->game = init_game(*sys);
 	mlx_loop_hook(sys->window.mlx, update, sys);
-	mlx_mouse_hide(sys->window.mlx, sys->window.win);
+	mlx_mouse_hide_no_leak(sys->window.mlx, sys->window.win);
 	mlx_hook(sys->window.win, ON_MOUSE, 1L << 6, mouse_move, sys);
 	mlx_hook(sys->window.win, ON_KEYPRESS, 1L << 0, input_press, sys);
 	mlx_hook(sys->window.win, ON_KEYRELEASE, 1L << 1, input_release, \

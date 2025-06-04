@@ -23,7 +23,7 @@
 # define IMG_WE		"../assets/we.xpm"
 # define IMG_EA		"../assets/ea.xpm"
 
-typedef struct s_img
+typedef struct s_image
 {
 	t_display	screen;
 	int			w;
@@ -34,7 +34,7 @@ typedef struct s_img
 	int			llen;
 	int			endian;
 	int			error;
-}	t_img;
+}	t_image;
 
 typedef struct s_animation
 {
@@ -51,21 +51,21 @@ typedef struct s_animation
 
 typedef struct s_sprite
 {
-	t_img		img;
+	t_image		img;
 	t_animation	anim;
 	bool		is_mirrored;
 }	t_sprite;
 
-t_img			new_xpm(t_display window, char *file);
-t_img			new_img(t_display window, int h, int w);
-t_img			new_img_alpha(t_display window, int w, int h);
-void			destroy_img(t_img image);
+t_image			new_xpm(t_display window, char *file);
+t_image			new_img(t_display window, int h, int w);
+t_image			new_img_alpha(t_display window, int w, int h);
+void			destroy_img(t_image image);
 
-void			pixel_scale(t_img *src, t_img *dst, int scale);
-void			put_pixel(t_img *img, int x, int y, unsigned int color);
+void			pixel_scale(t_image *src, t_image *dst, int scale);
+void			put_pixel(t_image *img, int x, int y, unsigned int color);
 unsigned int	pixel_alpha(int color, float alpha);
-uint32_t		get_pixel(t_img *img, int x, int y);
-void			clear_buffer(t_img *buffer, unsigned int color);
+uint32_t		get_pixel(t_image *img, int x, int y);
+void			clear_buffer(t_image *buffer, unsigned int color);
 
 void			update_frame(t_animation *anim, double delta);
 

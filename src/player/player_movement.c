@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achu <achu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:20:07 by achu              #+#    #+#             */
-/*   Updated: 2025/06/03 16:55:22 by achu             ###   ########.fr       */
+/*   Updated: 2025/06/04 11:44:20 by kbaridon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	player_turn(t_player *player, double delta)
 		+ player->dir.y * cos(player->controller.mouse_x);
 }
 
-void	player_direction(t_player *player, double delta)
+void	player_direction(t_player *player, double delta, t_vec2 *old_pos)
 {
 	t_input		ctrl;
 
@@ -78,4 +78,6 @@ void	player_direction(t_player *player, double delta)
 	else
 		player->vel = ft_approach(player->vel, \
 			ctrl.move.y * MAX_SPEED, ACCEL * delta);
+	old_pos->x = player->pos.x;
+	old_pos->y = player->pos.y;
 }

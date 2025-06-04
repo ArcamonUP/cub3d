@@ -13,7 +13,7 @@
 #include "engine/image.h"
 
 // Copy pixel from an image to another image
-void	put_pixel(t_img *img, int x, int y, unsigned int color)
+void	put_pixel(t_image *img, int x, int y, unsigned int color)
 {
 	char	*pixel;
 
@@ -24,7 +24,7 @@ void	put_pixel(t_img *img, int x, int y, unsigned int color)
 }
 
 // Get the pixel color RGBA
-unsigned int	get_pixel(t_img *img, int x, int y)
+unsigned int	get_pixel(t_image *img, int x, int y)
 {
 	char	*pixel;
 
@@ -39,7 +39,7 @@ unsigned int	pixel_alpha(int color, float alpha)
 	return ((int)(alpha * 255) << 24 | color);
 }
 
-void	clear_buffer(t_img *buffer, unsigned int color)
+void	clear_buffer(t_image *buffer, unsigned int color)
 {
 	int	x;
 	int	y;

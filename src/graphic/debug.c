@@ -16,7 +16,7 @@
 #include "engine/vector.h"
 #include "common.h"
 
-void	draw_bg(t_img *buffer)
+void	draw_bg(t_image *buffer)
 {
 	uint32_t	y;
 	uint32_t	x;
@@ -35,7 +35,7 @@ void	draw_bg(t_img *buffer)
 }
 
 // Draw the entire square into the screen
-void	draw_square(t_img *image, t_rect rect, unsigned int color)
+void	draw_square(t_image *image, t_rect rect, unsigned int color)
 {
 	float			alpha;
 	unsigned int	faded;
@@ -62,7 +62,7 @@ void	draw_square(t_img *image, t_rect rect, unsigned int color)
 }
 
 // Draw the border of the rect into the screen
-void	draw_rect(t_img *image, t_rect rect, unsigned int color)
+void	draw_rect(t_image *image, t_rect rect, unsigned int color)
 {
 	unsigned int	faded;
 	uint32_t		y;
@@ -89,7 +89,7 @@ void	draw_rect(t_img *image, t_rect rect, unsigned int color)
 	}
 }
 
-void	draw_circle(t_img *image, t_vec2 start, int radius)
+void	draw_circle(t_image *image, t_vec2 start, int radius)
 {
 	int			x;
 	int			y;

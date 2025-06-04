@@ -13,9 +13,9 @@
 #include "engine/image.h"
 #include "common.h"
 
-t_img	new_xpm(t_display window, char *file)
+t_image	new_xpm(t_display window, char *file)
 {
-	t_img	image;
+	t_image	image;
 
 	image.w = 0;
 	image.h = 0;
@@ -28,9 +28,9 @@ t_img	new_xpm(t_display window, char *file)
 	return (image);
 }
 
-t_img	new_img(t_display window, int w, int h)
+t_image	new_img(t_display window, int w, int h)
 {
-	t_img	image;
+	t_image	image;
 
 	image.w = w;
 	image.h = h;
@@ -43,7 +43,7 @@ t_img	new_img(t_display window, int w, int h)
 	return (image);
 }
 
-void	destroy_img(t_img image)
+void	destroy_img(t_image image)
 {
 	if (image.ptr && image.screen.mlx)
 		mlx_destroy_image(image.screen.mlx, image.ptr);

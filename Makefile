@@ -16,7 +16,7 @@ ORANGE=\033[38;5;214m
 NAME = cub3d
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
-LFLAGS = -L $(MLIBX) -lmlx -lXext -lX11 -lm -lz
+LFLAGS = -L $(MLIBX) -lmlx -lXext -lX11 -lm -lz -lXfixes
 
 SRCDIR = src
 INCDIR = includes

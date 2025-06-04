@@ -15,9 +15,9 @@
 #include "game.h"
 #include "system.h"
 
-t_img	create_image(void *mlx, char *path)
+t_image	create_image(void *mlx, char *path)
 {
-	t_img	image;
+	t_image	image;
 
 	image.error = 0;
 	image.ptr = mlx_xpm_file_to_image(mlx, path, &image.w, &image.h);

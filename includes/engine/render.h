@@ -28,9 +28,9 @@
 
 void	render(t_system *sys);
 
-void	draw_bg(t_img *game);
-void	draw_square(t_img *image, t_rect rect, unsigned int color);
-void	draw_rect(t_img *image, t_rect rect, unsigned int color);
-void	draw_circle(t_img *image, t_vec2 start, int radius);
+void	draw_bg(t_image *game);
+void	draw_square(t_image *image, t_rect rect, unsigned int color);
+void	draw_rect(t_image *image, t_rect rect, unsigned int color);
+void	draw_circle(t_image *image, t_vec2 start, int radius);
 
 #endif
