@@ -31,6 +31,8 @@ int	ft_dupcheck(char *line, char **str, int *map)
 	int	i;
 	int	y;
 
+	if (*str != NULL)
+		return (1);
 	if (*map == 1)
 		*map = 2;
 	i = 0;
