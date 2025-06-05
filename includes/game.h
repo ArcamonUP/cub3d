@@ -21,10 +21,10 @@ typedef struct s_system	t_system;
 
 typedef struct s_game
 {
-	t_img			no;
-	t_img			so;
-	t_img			we;
-	t_img			ea;
+	t_image			no;
+	t_image			so;
+	t_image			we;
+	t_image			ea;
 	int				floor_color;
 	int				roof_color;
 
@@ -32,6 +32,6 @@ typedef struct s_game
 }	t_game;
 
 t_game	*init_game(t_system sys);
-t_img	create_image(void *mlx, char *path);
+t_image	create_image(void *mlx, char *path);
 
 #endif

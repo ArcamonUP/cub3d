@@ -12,6 +12,7 @@
 
 #include "engine/input.h"
 #include "system.h"
+#include "player.h"
 
 // Initialize all input
 t_keybind	*init_input(void)
@@ -62,6 +63,13 @@ int	input_press(int key, t_system *sys)
 	i = 0;
 	if (key == KEY_ESC)
 		destroy_system(sys);
+	if (key == KEY_M)
+	{
+		if (sys->mouse)
+			mlx_mouse_show_no_leak(sys);
+		else
+			mlx_mouse_hide_no_leak(sys);
+	}
 	while (i < MAX_ACTION)
 	{
 		if (keybind[i].key == key)
@@ -87,5 +95,18 @@ int	input_release(int key, t_keybind *keybind)
 			keybind[i].hold = 0;
 		i++;
 	}
+	return (0);
+}
+
+int	mouse_move(int x, int y, t_system *sys)
+{
+	int	dx;
+
+	if (sys->mouse == 0)
+		return (0);
+	(void)y;
+	dx = x - sys->last_x;
+	sys->move_x = dx;
+	sys->last_x = x;
 	return (0);
 }

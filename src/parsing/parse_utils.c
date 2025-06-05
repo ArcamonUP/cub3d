@@ -31,6 +31,8 @@ int	ft_dupcheck(char *line, char **str, int *map)
 	int	i;
 	int	y;
 
+	if (*str != NULL)
+		return (1);
 	if (*map == 1)
 		*map = 2;
 	i = 0;
@@ -66,7 +68,7 @@ t_map	set_null(void)
 int	is_all_set(t_map data)
 {
 	if (!data.ceiling_color)
-		return (error("Error\nCeiling color not found."), 0);
+		return (error("Error\nInvalid file content."), 0);
 	if (!data.floor_color)
 		return (error("Error\nFloor color not found."), 0);
 	if (!data.ea_path)

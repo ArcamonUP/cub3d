@@ -26,10 +26,11 @@
 # define KEY_SPACE 			32
 # define KEY_SHIFT 			65505
 # define KEY_ESC			65307
+# define KEY_M				109
 
 # define ON_KEYPRESS		2
 # define ON_KEYRELEASE		3
-# define ON_EXPOSE			12
+# define ON_MOUSE			6
 # define ON_DESTROY			17
 
 # include <X11/X.h>
@@ -62,5 +63,6 @@ t_keybind	*init_input(void);
 void		update_input(t_keybind *keybind);
 int			input_press(int key, t_system *sys);
 int			input_release(int key, t_keybind *manager);
+int			mouse_move(int x, int y, t_system *sys);
 
 #endif

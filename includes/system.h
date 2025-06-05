@@ -22,12 +22,15 @@
 typedef struct s_system
 {
 	t_display	window;
-	t_img		buffer;
+	t_image		buffer;
 	t_keybind	*input;
+	int			move_x;
+	int			last_x;
 	t_game		*game;
 	t_map		*grid;
 	double		last;
 	double		delta;
+	int			mouse;
 }	t_system;
 
 t_system	*init_system(void);

@@ -6,13 +6,26 @@
 /*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:20:07 by achu              #+#    #+#             */
-/*   Updated: 2025/06/03 10:58:36 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/06/04 11:44:20 by kbaridon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include <stdbool.h>
 #include "player.h"
+
+bool	is_player(char c)
+{
+	if (c == 'N')
+		return (true);
+	else if (c == 'S')
+		return (true);
+	else if (c == 'W')
+		return (true);
+	else if (c == 'E')
+		return (true);
+	return (false);
+}
 
 static double	ft_approach(double current, double target, double step)
 {
@@ -43,9 +56,14 @@ void	player_turn(t_player *player, double delta)
 		player->dir.x = temp * cos(current) - player->dir.y * sin(current);
 		player->dir.y = temp * sin(current) + player->dir.y * cos(current);
 	}
+	temp = player->dir.x;
+	player->dir.x = temp * cos(player->controller.mouse_x)
+		- player->dir.y * sin(player->controller.mouse_x);
+	player->dir.y = temp * sin(player->controller.mouse_x)
+		+ player->dir.y * cos(player->controller.mouse_x);
 }
 
-void	player_direction(t_player *player, double delta)
+void	player_direction(t_player *player, double delta, t_vec2 *old_pos)
 {
 	t_input		ctrl;
 
@@ -60,4 +78,6 @@ void	player_direction(t_player *player, double delta)
 	else
 		player->vel = ft_approach(player->vel, \
 			ctrl.move.y * MAX_SPEED, ACCEL * delta);
+	old_pos->x = player->pos.x;
+	old_pos->y = player->pos.y;
 }

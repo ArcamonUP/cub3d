@@ -6,7 +6,7 @@
 /*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 09:40:08 by kbaridon          #+#    #+#             */
-/*   Updated: 2025/06/03 15:43:24 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/06/04 12:31:10 by kbaridon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "engine/wall.h"
 #include <stdio.h>
 
-static int	get_texture_color(t_img *tex, int x, int y)
+static int	get_texture_color(t_image *tex, int x, int y)
 {
 	char	*pixel;
 
@@ -26,7 +26,7 @@ static int	get_texture_color(t_img *tex, int x, int y)
 	return (*(unsigned int *)pixel);
 }
 
-static	t_img	*get_texture(t_system *sys, t_ray *ray)
+static	t_image	*get_texture(t_system *sys, t_ray *ray)
 {
 	if (ray->side == 0 && ray->raydir.x > 0)
 		return (&sys->game->ea);
@@ -60,7 +60,7 @@ static double	get_wall_x(t_system *sys, t_ray *ray, int *line_height)
 	return (result);
 }
 
-static void	do_pixel(t_wall data, t_img *tex, t_system *sys, int x)
+static void	do_pixel(t_wall data, t_image *tex, t_system *sys, int x)
 {
 	int	i;
 	int	color;
@@ -83,7 +83,7 @@ static void	do_pixel(t_wall data, t_img *tex, t_system *sys, int x)
 void	draw_wall(t_system *sys, t_ray *ray, int x)
 {
 	t_wall	data;
-	t_img	*tex;
+	t_image	*tex;
 
 	data.wall_x = get_wall_x(sys, ray, &data.line_h);
 	data.start_y = -data.line_h / 2 + WINDOW_HEIGHT / 2;

@@ -35,6 +35,7 @@ typedef struct s_input
 {
 	t_vec2	move;
 	t_vec2	turn;
+	double	mouse_x;
 	bool	sprint_hold;
 }	t_input;
 
@@ -49,6 +50,8 @@ typedef struct s_player
 }	t_player;
 
 t_player	init_player(t_system sys);
-void		update_player(t_player *player, t_keybind *keybind, double delta);
+void		update_player(t_player *player, t_system *sys, double delta);
+void		mlx_mouse_hide_no_leak(t_system *sys);
+void		mlx_mouse_show_no_leak(t_system *sys);
 
 #endif

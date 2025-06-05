@@ -1,10 +1,12 @@
 NO ./textures/color_stone.xpm
 SO ./textures/eagle.xpm
-C 0,100,0
 WE ./textures/wood.xpm
 EA ./textures/grey_stone.xpm
 
-F 255,0
+salut
+
+F 255,0,0
+C 0,100,0
 
 1111111111
 1E00000001

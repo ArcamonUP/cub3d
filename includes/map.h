@@ -69,4 +69,6 @@ int		get_value(char *str, int *i);
 
 void	free_tab(char **tab);
 
+int		is_not_good(t_map data);
+
 #endif

@@ -13,10 +13,10 @@
 GREEN=\033[0;32m
 ORANGE=\033[38;5;214m
 
-NAME = cub3d
+NAME = cub3D
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
-LFLAGS = -L $(MLIBX) -lmlx -lXext -lX11 -lm -lz
+LFLAGS = -L $(MLIBX) -lmlx -lXext -lX11 -lm -lz -lXfixes
 
 SRCDIR = src
 INCDIR = includes
@@ -41,6 +41,7 @@ HEADERS =	$(INCDIR)/engine/image.h \
 
 SRC =	main.c \
 		parsing/parsing.c parsing/map.c parsing/parse_utils.c parsing/errors.c \
+		parsing/check.c \
 		engine/input.c \
 		engine/game.c \
 		engine/system.c \
@@ -49,10 +50,12 @@ SRC =	main.c \
 		engine/draw_floor_ceiling.c \
 		graphic/image.c \
 		graphic/render.c \
+		graphic/debug.c \
 		graphic/pixel.c \
 		graphic/window.c \
 		player/player_controller.c \
 		player/player_movement.c \
+		player/hide_mouse.c
 
 OBJS = $(addprefix $(SRCDIR)/, $(SRC:.c=.o))
 
