@@ -15,22 +15,27 @@
 #include <stdlib.h>
 #include "engine/window.h"
 
-t_display	init_window(void)
+t_display	*init_window(void)
 {
-	t_display	display;
+	t_display	*display;
 	void		*mlx_ptr;
 	void		*win_ptr;
 
+	display = NULL;
 	mlx_ptr = mlx_init();
+	if (!mlx_ptr)
+		return (NULL);
 	win_ptr = mlx_new_window(
 			mlx_ptr,
 			WINDOW_WIDTH,
 			WINDOW_HEIGHT,
 			WINDOW_TITLE);
-	display.mlx = mlx_ptr;
-	display.win = win_ptr;
-	display.width = WINDOW_WIDTH;
-	display.height = WINDOW_HEIGHT;
+	if (win_ptr == NULL)
+		return (NULL);
+	display->mlx = mlx_ptr;
+	display->win = win_ptr;
+	display->width = WINDOW_WIDTH;
+	display->height = WINDOW_HEIGHT;
 	return (display);
 }
 

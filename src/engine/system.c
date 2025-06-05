@@ -25,11 +25,15 @@ double	get_frame(void)
 t_system	*init_system(void)
 {
 	t_system	*sys;
+	t_display	*temp;
 
 	sys = (t_system *)malloc(sizeof(t_system));
 	if (!sys)
 		return (NULL);
-	sys->window = init_window();
+	temp = init_window();
+	if (!temp)
+		return (free(sys), NULL);
+	sys->window = *temp;
 	sys->buffer = new_img(sys->window, WINDOW_WIDTH, WINDOW_HEIGHT);
 	sys->input = init_input();
 	sys->move_x = 0;

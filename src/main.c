@@ -66,7 +66,7 @@ int	main(int ac, char **av)
 		return (1);
 	sys = init_system();
 	if (!sys)
-		return (1);
+		return (error("Error\nFailed to init system."), destroy_data(data), 1);
 	sys->grid = &data;
 	return (start(sys));
 }
