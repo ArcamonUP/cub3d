@@ -43,7 +43,8 @@ t_display	init_window(void)
 			WINDOW_HEIGHT,
 			WINDOW_TITLE);
 	if (win_ptr == NULL)
-		return (display);
+		return (mlx_destroy_display(mlx_ptr), \
+		free(mlx_ptr), display);
 	display.mlx = mlx_ptr;
 	display.win = win_ptr;
 	display.width = WINDOW_WIDTH;

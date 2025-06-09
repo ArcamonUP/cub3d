@@ -13,33 +13,27 @@
 #include "engine/image.h"
 #include "common.h"
 
-t_image	new_xpm(t_display window, char *file)
-{
-	t_image	image;
-
-	image.w = 0;
-	image.h = 0;
-	image.ptr = mlx_xpm_file_to_image(window.mlx, file, &image.w, &image.h);
-	if (!image.ptr)
-		ft_perror("Error: Image could not be read");
-	image.addr = mlx_get_data_addr(image.ptr,
-			&(image.bpp), &(image.llen), &(image.endian));
-	image.screen = window;
-	return (image);
-}
-
 t_image	new_img(t_display window, int w, int h)
 {
 	t_image	image;
 
+	image.error = 0;
 	image.w = w;
 	image.h = h;
+	image.screen = window;
 	image.ptr = mlx_new_image(window.mlx, w, h);
 	if (!image.ptr)
-		ft_perror("Error: Failed to create image");
+	{
+		image.error = 1;
+		return (image);
+	}
 	image.addr = mlx_get_data_addr(image.ptr,
 			&(image.bpp), &(image.llen), &(image.endian));
-	image.screen = window;
+	if (!image.addr)
+	{
+		image.error = 1;
+		return (destroy_img(image), image);
+	}
 	return (image);
 }
 

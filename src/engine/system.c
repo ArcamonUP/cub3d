@@ -35,6 +35,8 @@ t_system	*init_system(void)
 		return (free(sys), NULL);
 	sys->window = temp;
 	sys->buffer = new_img(sys->window, WINDOW_WIDTH, WINDOW_HEIGHT);
+	if (sys->buffer.error)
+		return (free(sys), destroy_window(&temp), NULL);
 	sys->input = init_input();
 	sys->move_x = 0;
 	sys->last_x = WINDOW_WIDTH / 2;
@@ -58,7 +60,9 @@ int32_t	destroy_system(t_system	*sys)
 	destroy_img(sys->buffer);
 	destroy_window(&sys->window);
 	destroy_data(*sys->grid);
-	free(sys->game);
-	free(sys);
+	if (sys->game)
+		free(sys->game);
+	if (sys)
+		free(sys);
 	exit(0);
 }

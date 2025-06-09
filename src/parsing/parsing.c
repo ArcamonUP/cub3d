@@ -38,14 +38,14 @@ char	**get_cpy(char **map, char *line)
 	return (temp);
 }
 
-int	update_map(char *line, char ***map, int *is_build)
+int	update_map(char *line, char ***map, t_map *data)
 {
 	char	**temp;
 	char	*clean_line;
 
-	if (*is_build == 2)
+	if (data->map_is_build == 2 || !check_is_end(data))
 		return (1);
-	*is_build = 1;
+	data->map_is_build = 1;
 	if (ft_strchr(line, '\n'))
 		clean_line = ft_substr(line, 0, ft_strlen(line) - 1);
 	else
@@ -92,7 +92,7 @@ int	dispatch_init(t_map *data, char *line)
 		error = ft_dupcheck(line + i + 1, &data->ceiling_color, \
 			&data->map_is_build);
 	else
-		error = update_map(line, &data->map, &data->map_is_build);
+		error = update_map(line, &data->map, data);
 	return (error);
 }
 

@@ -31,6 +31,7 @@ typedef struct s_system
 	double		last;
 	double		delta;
 	int			mouse;
+	int			error;
 }	t_system;
 
 t_system	*init_system(void);

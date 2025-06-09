@@ -27,11 +27,10 @@ typedef struct s_game
 	t_image			ea;
 	int				floor_color;
 	int				roof_color;
-
 	t_player		player;
 }	t_game;
 
-t_game	*init_game(t_system sys);
+t_game	*init_game(t_system *sys);
 t_image	create_image(void *mlx, char *path);
 
 #endif

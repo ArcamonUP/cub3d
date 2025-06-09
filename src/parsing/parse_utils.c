@@ -32,13 +32,13 @@ int	ft_dupcheck(char *line, char **str, int *map)
 	int	y;
 
 	if (*str != NULL)
-		return (1);
+		return (error("Error.\nMalloc failed."), 1);
 	if (*map == 1)
 		*map = 2;
 	i = 0;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
-	if (!line[i])
+	if (!line[i] || line[i] == '\n')
 		return (1);
 	*str = ft_calloc(sizeof(char), ft_strlen(line + i) + 1);
 	if (!*str)

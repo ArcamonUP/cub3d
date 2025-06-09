@@ -45,7 +45,9 @@ static int32_t	update(t_system *sys)
 static int32_t	start(t_system *sys)
 {
 	sys->last = get_frame();
-	sys->game = init_game(*sys);
+	sys->game = init_game(sys);
+	if (sys->error || !sys->game)
+		return (error("Error.\nMalloc failed."), destroy_system(sys), 1);
 	mlx_loop_hook(sys->window.mlx, update, sys);
 	mlx_hook(sys->window.win, ON_MOUSE, 1L << 6, mouse_move, sys);
 	mlx_hook(sys->window.win, ON_KEYPRESS, 1L << 0, input_press, sys);

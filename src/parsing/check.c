@@ -6,7 +6,7 @@
 /*   By: kbaridon <kbaridon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 15:43:57 by kbaridon          #+#    #+#             */
-/*   Updated: 2025/06/05 16:09:33 by kbaridon         ###   ########.fr       */
+/*   Updated: 2025/06/09 15:19:54 by kbaridon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,12 @@ int	is_not_good(t_map data)
 	if (check_color(data.ceiling_color) || check_color(data.floor_color))
 		return (1);
 	return (0);
+}
+
+int	check_is_end(t_map *data)
+{
+	if (!data->ceiling_color || !data->ea_path || !data->floor_color || \
+	!data->no_path || !data->so_path || !data->we_path)
+		return (0);
+	return (1);
 }

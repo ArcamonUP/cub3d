@@ -35,17 +35,23 @@ t_image	create_image(void *mlx, char *path)
 	return (image);
 }
 
-t_game	*init_game(t_system sys)
+t_game	*init_game(t_system *sys)
 {
 	t_game	*game;
 
+	sys->error = 0;
 	game = (t_game *)malloc(sizeof(t_game));
 	if (!game)
+	{
+		sys->error = 1;
 		return (NULL);
-	game->player = init_player(sys);
-	game->no = create_image(sys.window.mlx, sys.grid->no_path);
-	game->so = create_image(sys.window.mlx, sys.grid->so_path);
-	game->ea = create_image(sys.window.mlx, sys.grid->ea_path);
-	game->we = create_image(sys.window.mlx, sys.grid->we_path);
+	}
+	game->player = init_player(*sys);
+	game->no = create_image(sys->window.mlx, sys->grid->no_path);
+	game->so = create_image(sys->window.mlx, sys->grid->so_path);
+	game->ea = create_image(sys->window.mlx, sys->grid->ea_path);
+	game->we = create_image(sys->window.mlx, sys->grid->we_path);
+	if (game->no.error || game->so.error || game->we.error || game->ea.error)
+		sys->error = 1;
 	return (game);
 }
