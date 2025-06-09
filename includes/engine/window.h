@@ -27,7 +27,7 @@ typedef struct s_display
 	int		width;
 }	t_display;
 
-t_display	*init_window(void);
+t_display	init_window(void);
 void		destroy_window(t_display *window);
 
 #endif

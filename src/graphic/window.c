@@ -14,28 +14,40 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include "engine/window.h"
+#include "libft.h"
 
-t_display	*init_window(void)
+t_display	set_display_null(void)
 {
-	t_display	*display;
+	t_display	display;
+
+	display.mlx = NULL;
+	display.width = 0;
+	display.height = 0;
+	display.win = NULL;
+	return (display);
+}
+
+t_display	init_window(void)
+{
+	t_display	display;
 	void		*mlx_ptr;
 	void		*win_ptr;
 
-	display = NULL;
+	display = set_display_null();
 	mlx_ptr = mlx_init();
 	if (!mlx_ptr)
-		return (NULL);
+		return (display);
 	win_ptr = mlx_new_window(
 			mlx_ptr,
 			WINDOW_WIDTH,
 			WINDOW_HEIGHT,
 			WINDOW_TITLE);
 	if (win_ptr == NULL)
-		return (NULL);
-	display->mlx = mlx_ptr;
-	display->win = win_ptr;
-	display->width = WINDOW_WIDTH;
-	display->height = WINDOW_HEIGHT;
+		return (display);
+	display.mlx = mlx_ptr;
+	display.win = win_ptr;
+	display.width = WINDOW_WIDTH;
+	display.height = WINDOW_HEIGHT;
 	return (display);
 }
 
