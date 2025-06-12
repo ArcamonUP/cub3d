@@ -62,7 +62,7 @@ int	update_map(char *line, char ***map, t_map *data)
 	}
 	temp = get_cpy(*map, clean_line);
 	if (!temp)
-		return (free(clean_line), free_tab(*map), 1);
+		return (free(clean_line), 1);
 	*map = temp;
 	return (0);
 }
@@ -132,6 +132,8 @@ t_map	parsing(int ac, char **av)
 		return (error("Error\nCannot open file."), data);
 	data = init_data(data, fd);
 	close(fd);
+	if (!data.map)
+		return (error("Error\nInit failed."), data);
 	if (is_not_good(data))
 		return (destroy_data(data));
 	return (parse_map(data, -1, 0));
